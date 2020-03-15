@@ -4,33 +4,22 @@ import { Text, Image, ScrollView, StatusBar, TouchableOpacity } from 'react-nati
 import { TextInput } from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
-class HomeScreen extends Component {
+class OrderanScreen extends Component {
     static navigationOptions = {
         headerShown: false
     };
     render() {
         console.disableYellowBox = true
         return (
-            // <Text>hello</Text>
             <View style={{ flex: 1 }}>
                 <View style={{ flex: 1 }}>
                     <StatusBar backgroundColor="#35B829" barStyle="light-content" />
                     <View >
                         {/* <StatusBar hidden={route.statusBarHidden} /> */}
                         <View style={{ backgroundColor: '#35B829', height: 60, flexDirection: 'row' }}>
-                            <View style={{ flex: 4, justifyContent: 'center', alignItems: 'center' }}>
-                                <TouchableOpacity
-                                    style={{ backgroundColor: 'transparent', padding: 8, justifyContent: 'center', alignItems: 'center' }}
-                                >
-                                    <Button onPress={() => this.props.navigation.navigate('Search')} style={{ borderWidth: 1, borderColor: 'rgba(0, 0, 0, 0.1)', width: 260, height: 36, borderRadius: 5, paddingLeft: 35, paddingRight: 18, backgroundColor: "white", height: 40 }}><Text style={{ color: '#84878A' }}>Butuh Apa Ni??</Text>
-                                        <Image source={require('../../../../android/img/drawable-mdpi/ic_magnify.png')} style={{ position: 'absolute', width: 25, height: 25, left: 5, top: 6 }} />
-                                    </Button>
-                                </TouchableOpacity>
+                            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                                <Text style={{ fontSize: 22, color: 'white' }}>Order</Text>
                             </View>
-                            <View style={{ flex: 1, justifyContent: 'center' }}>
-                                <Icon name="cart" style={{ fontSize: 30, left: 16, color: 'white', position: 'absolute', top: 15 }}></Icon>
-                            </View>
-
                         </View>
 
                         <ScrollView  >
@@ -233,10 +222,10 @@ class HomeScreen extends Component {
                 {/* footer */}
                 <View style={{ height: 54, flexDirection: 'row', backgroundColor: 'white' }}>
                     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                        <Icon name="home" style={{ fontSize: 32, color: '#35B829' }}></Icon>
+                        <Icon name="home" style={{ fontSize: 32, color: '#848484' }} onPress={() => this.props.navigation.navigate('Home')}></Icon>
                         <Text>Home</Text></View>
                     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                        <Icon name="cart" style={{ fontSize: 32, color: '#848484' }} onPress={() => this.props.navigation.navigate('Order')}></Icon>
+                        <Icon name="cart" style={{ fontSize: 32, color: '#35B829' }}></Icon>
                         <Text style={{ fontSize: 12 }}>Order</Text>
                     </View>
                     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
@@ -256,4 +245,4 @@ class HomeScreen extends Component {
     }
 }
 
-export default HomeScreen
+export default OrderanScreen
