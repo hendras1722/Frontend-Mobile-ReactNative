@@ -5,20 +5,16 @@ import { createBottomTabNavigator } from 'react-navigation-tabs';
 // import { Provider } from 'react-redux';
 
 import HomeScreen from './src/Components/screen/Home/HomeScreen';
+import SearchScreen from './src/Components/screen/Search/SearchScreen'
 
 const homeNavigator = createStackNavigator(
     {
-        Home: HomeScreen
+        Home: HomeScreen,
+        Search: SearchScreen
     }
 )
 
-const AppNavigator = createSwitchNavigator(
-    {
-        Home: homeNavigator,
-    }
-);
-
-const AppContainer = createAppContainer(AppNavigator);
+const AppContainer = createAppContainer(homeNavigator);
 
 function App() {
     return (
