@@ -7,24 +7,24 @@ import { createBottomTabNavigator } from 'react-navigation-tabs';
 import HomeScreen from './src/Components/screen/Home/HomeScreen';
 
 const homeNavigator = createStackNavigator(
-  {
-    Home: HomeScreen
-  }
+    {
+        Home: HomeScreen
+    }
 )
 
-// const AppNavigator = createSwitchNavigator(
-//   {
-//     Home: homeNavigator,
-//   }
-// );
+const AppNavigator = createSwitchNavigator(
+    {
+        Home: homeNavigator,
+    }
+);
 
-const AppContainer = createAppContainer(homeNavigator);
+const AppContainer = createAppContainer(AppNavigator);
 
 function App() {
-  return (
-    <AppContainer />
+    return (
+        <AppContainer />
 
-  )
+    )
 }
 
 export default App;
