@@ -16,8 +16,14 @@ const homeNavigator = createStackNavigator(
     Order: OrderanScreen
   }
 )
+const tabNavigator = createBottomTabNavigator(
+  {
+    Home: HomeScreen,
+    Search: SearchScreen
+  }
+)
 
-const AppContainer = createAppContainer(homeNavigator);
+const AppContainer = createAppContainer(tabNavigator);
 
 function App() {
   return (
