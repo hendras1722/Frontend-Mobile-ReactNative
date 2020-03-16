@@ -10,6 +10,9 @@ import SearchScreen from './src/Components/screen/Search/SearchScreen'
 import OrderanScreen from './src/Components/screen/Order/OrderScreen';
 import TransactionScreen from './src/Components/screen/transaction/TransactionScreen'
 import DetailTransaction from './src/Components/screen/transaction/Detailtransaction'
+import AccountScreen from './src/Components/screen/Account/AccountScreen'
+import InfoAkun from './src/Components/screen/Layout/InfoAkun'
+import LoginScreen from './src/Components/screen/Login/LoginScreen'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 
@@ -27,8 +30,13 @@ const homeNavigator = createStackNavigator(
     },
     Order: OrderanScreen,
     Transaction: TransactionScreen,
-    DetailTransaction: DetailTransaction
-
+    DetailTransaction: DetailTransaction,
+    Account: AccountScreen,
+    InfoAkun: InfoAkun,
+    Login: LoginScreen
+  },
+  {
+    initialRouteName: 'Login',
   }
 )
 // const AppNavigator = createSwitchNavigator(
@@ -56,13 +64,18 @@ const tabNavigator = createBottomTabNavigator(
       }
     },
     Account: {
-      screen: TransactionScreen,
+      screen: AccountScreen,
       navigationOptions: {
         tabBarIcon: ({ tintColor }) => (
           <Icon name="account" style={{ fontSize: 30, color: '#848484' }}></Icon>
         )
-      }
-    }
+      },
+    },
+  },
+  {
+    initialRouteName: 'Home',
+    activeColor: '#000',
+    inactiveColor: '#000'
   }
 )
 
