@@ -8,8 +8,8 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 class SearchScreen extends Component {
     static navigationOptions = {
         headerShown: false,
-        tabBarVisible: true,
-        activeTintColor: 'blue',
+        tabBarVisible: false,
+        gesture: false,
         tabStyle: {
             backgroundColor: 'red'
         }
@@ -23,13 +23,10 @@ class SearchScreen extends Component {
                     <StatusBar backgroundColor="#35B829" barStyle="light-content" />
                     <View >
                         {/* <StatusBar hidden={route.statusBarHidden} /> */}
-                        <View style={{ backgroundColor: '#35B829', height: 60, flexDirection: 'row' }}>
-                            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                                <TouchableOpacity onPress={() => this.props.navigation.goback()} >
-                                    <Button name="arrow-left-circle" onPress={() => this.props.navigation.navigate('Home')}>
-                                        <Icon onPress={() => this.props.navigation.navigate('Home')} name="arrow-left-circle" style={{ fontSize: 30, left: -12, color: 'white', position: 'absolute', top: 8 }}></Icon>
-                                    </Button>
-                                </TouchableOpacity>
+                        <View style={{ backgroundColor: '#35B829', height: 60, flexDirection: 'row' }} >
+                            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }} onPress={() => this.props.navigation.navigate('Account')}>
+                                <Icon onPress={() => this.props.navigation.navigate('Home')} name="arrow-left-circle" style={{ fontSize: 40, left: 10, color: 'white', position: 'absolute', top: 10 }}></Icon>
+
                             </View>
                             <View style={{ flex: 5, justifyContent: 'center' }}>
                                 {/* <Icon name="cart" style={{ fontSize: 30, left: 16, color: 'white', position: 'absolute', top: 15 }}></Icon> */}
