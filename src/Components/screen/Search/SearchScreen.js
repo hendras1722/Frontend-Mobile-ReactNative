@@ -21,7 +21,7 @@ class SearchScreen extends Component {
                         <View style={{ backgroundColor: '#35B829', height: 60, flexDirection: 'row' }}>
                             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
                                 <Button onPress={() => this.props.navigation.navigate('Home')}>
-                                    <Icon onPress={() => this.props.navigation.navigate('Home')} name="arrow-left-circle" style={{ fontSize: 30, left: -12, color: 'white', position: 'absolute', top: 10 }}></Icon>
+                                    <Icon onPress={() => this.props.navigation.navigate('Home')} name="arrow-left-circle" style={{ fontSize: 30, left: -12, color: 'white', position: 'absolute', top: 8 }}></Icon>
                                 </Button>
                             </View>
                             <View style={{ flex: 5, justifyContent: 'center' }}>

@@ -17,41 +17,37 @@ class OrderanScreen extends Component {
                     <View >
                         {/* <StatusBar hidden={route.statusBarHidden} /> */}
                         <View style={{ backgroundColor: '#35B829', height: 60, flexDirection: 'row' }}>
-                            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                            <View style={{ flex: 1, justifyContent: 'center', padding: 10 }}>
                                 <Text style={{ fontSize: 22, color: 'white' }}>Order</Text>
                             </View>
                         </View>
 
                         <ScrollView  >
-                            <View style={{ flex: 1, marginTop: 0, marginHorizontal: 20 }}>
-                                {/* bagian sini yang ditambah */}
-                                <Text>Hello</Text>
-                                <Image
-                                    source={require('../../../../android/img/082399700_1444710907-tomat-rsmadkotakediri.jpg')}
-                                />
+                            <View style={{ flex: 1, marginTop: -30, marginHorizontal: 20, marginVertical: 5, top: 20, height: 120 }}>
+                                <View style={{ top: 20, flexDirection: 'row' }}>
+                                    <Image
+                                        style={{ width: 116, height: 80, borderRadius: 10, marginHorizontal: 10 }}
+                                        source={require('../../../../android/img/082399700_1444710907-tomat-rsmadkotakediri.jpg')}
+                                    />
+
+                                    <View>
+                                        <Text>Tomat</Text>
+                                        <Text>Rp. 12000</Text>
+                                        <View style={{ flexDirection: 'row' }}>
+                                            <View style={{ padding: 10 }}><Button style={{ width: 20, justifyContent: 'center', alignItems: 'center', height: 30, backgroundColor: '#35B829' }}><Text>-</Text></Button></View>
+                                            <View style={{ padding: 10, justifyContent: 'center', alignItems: 'center' }}><Text style={{ fontSize: 22 }}>3</Text></View>
+                                            <View style={{ padding: 10 }}><Button style={{ width: 20, justifyContent: 'center', alignItems: 'center', height: 30, backgroundColor: '#35B829' }}><Text>+</Text></Button></View>
+                                            <View><Button style={{ padding: 5, backgroundColor: '#35B829', left: 15, width: 60, height: 70, top: -30, position: 'absolute', justifyContent: 'center', alignItems: 'center', borderRadius: 10 }}><Text style={{ color: 'white' }}>hapus</Text></Button></View>
+                                        </View>
+                                    </View>
+                                </View>
                             </View>
+
                         </ScrollView>
                     </View>
                 </View >
 
-                {/* footer */}
-                <View style={{ height: 54, flexDirection: 'row', backgroundColor: 'white' }}>
-                    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                        <Icon name="home" style={{ fontSize: 32, color: '#848484' }} onPress={() => this.props.navigation.navigate('Home')}></Icon>
-                        <Text>Home</Text></View>
-                    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                        <Icon name="cart" style={{ fontSize: 32, color: '#35B829' }}></Icon>
-                        <Text style={{ fontSize: 12 }}>Order</Text>
-                    </View>
-                    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                        <Icon name="script-text" style={{ fontSize: 32, color: '#848484' }}></Icon>
-                        <Text>Transaction</Text>
-                    </View>
-                    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                        <Icon name="account" style={{ fontSize: 32, color: '#848484' }}></Icon>
 
-                        <Text>Account</Text></View>
-                </View>
                 <View></View>
 
                 {/* <Text>Hello</Text> */}

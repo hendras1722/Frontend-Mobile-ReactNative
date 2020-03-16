@@ -9,7 +9,13 @@ import { readProduct, readProductImport, readProductLocal } from '../../redux/ac
 
 class HomeScreen extends Component {
     static navigationOptions = {
-        headerShown: false
+        headerShown: false,
+        tabBarOptions: {
+            activeTintColor: 'blue'
+        },
+        style: {
+            backgroundColor: '#171F33' // TabBar background
+        }
     };
 
     componentDidMount() {
@@ -89,7 +95,7 @@ class HomeScreen extends Component {
                                     </View>
                                 </View>
 
-                                <View style={{ flex: 1, marginTop: -75, marginHorizontal: 20, bottom: -20 }}>
+                                <View style={{ flex: 1, marginTop: -230, marginHorizontal: 20, bottom: -20 }}>
                                     <Text>New Product</Text>
                                     <ScrollView horizontal={true} >
                                         <View style={{ maxHeight: 230, height: 230, flexDirection: 'row' }}>
@@ -165,25 +171,6 @@ class HomeScreen extends Component {
                         </View>
                     </View >
 
-                    {/* footer */}
-                    <View style={{ height: 54, flexDirection: 'row', backgroundColor: 'white' }}>
-                        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                            <Icon name="home" style={{ fontSize: 32, color: '#35B829' }}></Icon>
-                            <Text>Home</Text></View>
-                        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                            <Icon name="cart" style={{ fontSize: 32, color: '#848484' }} onPress={() => this.props.navigation.navigate('Order')}></Icon>
-                            <Text style={{ fontSize: 12 }}>Order</Text>
-                        </View>
-                        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                            <Icon name="script-text" style={{ fontSize: 32, color: '#848484' }}></Icon>
-                            <Text>Transaction</Text>
-                        </View>
-                        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                            <Icon name="account" style={{ fontSize: 32, color: '#848484' }}></Icon>
-
-                            {/* <Text>Hello</Text> */}
-                        </View >
-                    </View>
                 </View>
             </Fragment>
         )
