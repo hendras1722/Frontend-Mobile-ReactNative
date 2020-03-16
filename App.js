@@ -7,20 +7,68 @@ import { Provider } from 'react-redux'
 import store from './src/Components/redux/store';
 import HomeScreen from './src/Components/screen/Home/HomeScreen';
 import SearchScreen from './src/Components/screen/Search/SearchScreen'
-import OrderScreen from './src/Components/screen/Order/OrderScreen'
 import OrderanScreen from './src/Components/screen/Order/OrderScreen';
+import TransactionScreen from './src/Components/screen/transaction/TransactionScreen'
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+
 
 const homeNavigator = createStackNavigator(
   {
     Home: HomeScreen,
-    Search: SearchScreen,
-    Order: OrderanScreen
+    Search: {
+      screen: SearchScreen,
+      navigationOptions: {
+        tabBarVisible: false,
+        tabBarVisible: ({ state }) => ({
+          visible: false
+        })
+      },
+    },
+    Order: OrderanScreen,
+    Transaction: TransactionScreen
+
   }
 )
+// const AppNavigator = createSwitchNavigator(
+//   {
+//     Home: homeNavigator,
+//     Search: SearchScreen
+//   }
+// );
 const tabNavigator = createBottomTabNavigator(
   {
-    Home: HomeScreen,
-    Search: SearchScreen
+    Home: {
+      screen: homeNavigator,
+      navigationOptions: {
+        tabBarIcon: ({ tintColor }) => (
+          <Icon name="home" color={tintColor} style={{ fontSize: 30, color: '#848484' }}></Icon>
+        )
+      }
+    },
+    Order: {
+      screen: OrderanScreen,
+      navigationOptions: {
+        tabBarIcon: ({ tintColor }) => (
+          <Icon name="cart" style={{ fontSize: 30, color: '#848484' }}></Icon>
+        )
+      }
+    },
+    Transaction: {
+      screen: TransactionScreen,
+      navigationOptions: {
+        tabBarIcon: ({ tintColor }) => (
+          <Icon name="script-text" style={{ fontSize: 30, color: '#848484' }}></Icon>
+        )
+      }
+    },
+    Account: {
+      screen: TransactionScreen,
+      navigationOptions: {
+        tabBarIcon: ({ tintColor }) => (
+          <Icon name="account" style={{ fontSize: 30, color: '#848484' }}></Icon>
+        )
+      }
+    }
   }
 )
 

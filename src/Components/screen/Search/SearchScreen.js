@@ -7,7 +7,12 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 class SearchScreen extends Component {
     static navigationOptions = {
-        headerShown: false
+        headerShown: false,
+        tabBarVisible: true,
+        activeTintColor: 'blue',
+        tabStyle: {
+            backgroundColor: 'blue'
+        }
     };
     render() {
         console.disableYellowBox = true
