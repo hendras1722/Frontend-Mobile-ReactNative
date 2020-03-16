@@ -7,7 +7,12 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 class SearchScreen extends Component {
     static navigationOptions = {
-        headerShown: false
+        headerShown: false,
+        tabBarVisible: true,
+        activeTintColor: 'blue',
+        tabStyle: {
+            backgroundColor: 'red'
+        }
     };
     render() {
         console.disableYellowBox = true
@@ -20,9 +25,11 @@ class SearchScreen extends Component {
                         {/* <StatusBar hidden={route.statusBarHidden} /> */}
                         <View style={{ backgroundColor: '#35B829', height: 60, flexDirection: 'row' }}>
                             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                                <Button onPress={() => this.props.navigation.navigate('Home')}>
-                                    <Icon onPress={() => this.props.navigation.navigate('Home')} name="arrow-left-circle" style={{ fontSize: 30, left: -12, color: 'white', position: 'absolute', top: 8 }}></Icon>
-                                </Button>
+                                <TouchableOpacity onPress={() => this.props.navigation.goback()} >
+                                    <Button name="arrow-left-circle" onPress={() => this.props.navigation.navigate('Home')}>
+                                        <Icon onPress={() => this.props.navigation.navigate('Home')} name="arrow-left-circle" style={{ fontSize: 30, left: -12, color: 'white', position: 'absolute', top: 8 }}></Icon>
+                                    </Button>
+                                </TouchableOpacity>
                             </View>
                             <View style={{ flex: 5, justifyContent: 'center' }}>
                                 {/* <Icon name="cart" style={{ fontSize: 30, left: 16, color: 'white', position: 'absolute', top: 15 }}></Icon> */}
@@ -64,20 +71,25 @@ class SearchScreen extends Component {
                         <View style={{ marginVertical: 10, backgroundColor: '#bbb3b361', padding: 10 }}>
                             <Text>Search By All Product</Text>
                         </View>
-                        <View style={{ height: 200 }}>
-                            <Image
-                                style={{ width: 116, height: 72, top: 10, borderRadius: 10, marginHorizontal: 10 }}
-                                source={require('../../../../android/img/082399700_1444710907-tomat-rsmadkotakediri.jpg')}
-                            />
-                            <Text style={{ top: 20, left: 18 }}>Tomat</Text>
-                            <Text style={{ top: 20, left: 18, fontSize: 9 }}>Organik</Text>
-                            <Text style={{ top: 25, left: 18, color: '#35B829' }}>Rp.19.900</Text>
-                            <Text style={{ top: 8, left: 88, fontSize: 11 }}>/500 gr</Text>
-                            <Button
-                                style={{ width: 116, top: 20, alignItems: 'center', justifyContent: 'center', backgroundColor: '#35B829', borderRadius: 3, height: 35, left: 10 }}
+                        {/* mPping disini */}
+                        <ScrollView horizontal={true}>
+                            <View style={{ flexDirection: 'row' }} >
+                                <View style={{ height: 200 }}>
+                                    <Image
+                                        style={{ width: 116, height: 72, top: 10, borderRadius: 10, marginHorizontal: 10 }}
+                                        source={require('../../../../android/img/082399700_1444710907-tomat-rsmadkotakediri.jpg')}
+                                    />
+                                    <Text style={{ top: 20, left: 18 }}>Tomat</Text>
+                                    <Text style={{ top: 20, left: 18, fontSize: 9 }}>Organik</Text>
+                                    <Text style={{ top: 25, left: 18, color: '#35B829' }}>Rp.19.900</Text>
+                                    <Text style={{ top: 8, left: 88, fontSize: 11 }}>/500 gr</Text>
+                                    <Button
+                                        style={{ width: 116, top: 20, alignItems: 'center', justifyContent: 'center', backgroundColor: '#35B829', borderRadius: 3, height: 35, left: 10 }}
 
-                            ><Text style={{ color: 'white' }}>order</Text></Button>
-                        </View>
+                                    ><Text style={{ color: 'white' }}>order</Text></Button>
+                                </View>
+                            </View>
+                        </ScrollView>
                     </View>
                 </View>
             </View>
