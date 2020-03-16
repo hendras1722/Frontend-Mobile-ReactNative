@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import { InputGroup, View, Container, Header, Item, Input, Button, Card, CardItem, Body } from 'native-base';
-import { Text, Image, ScrollView, StatusBar, TouchableOpacity } from 'react-native'
+import { InputGroup, View, Container, Header, Item, Input, Button, Card, CardItem, Body, Footer } from 'native-base';
+import { Text, Image, ScrollView, StatusBar, TouchableOpacity, Form } from 'react-native'
 import { TextInput } from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
@@ -23,27 +23,43 @@ class OrderanScreen extends Component {
                         </View>
 
                         <ScrollView  >
-                            <View style={{ flex: 1, marginTop: -30, marginHorizontal: 20, marginVertical: 5, top: 20, height: 120 }}>
-                                <View style={{ top: 20, flexDirection: 'row' }}>
-                                    <Image
-                                        style={{ width: 116, height: 80, borderRadius: 10, marginHorizontal: 10 }}
-                                        source={require('../../../../android/img/082399700_1444710907-tomat-rsmadkotakediri.jpg')}
-                                    />
-
-                                    <View>
-                                        <Text>Tomat</Text>
-                                        <Text>Rp. 12000</Text>
-                                        <View style={{ flexDirection: 'row' }}>
-                                            <View style={{ padding: 10 }}><Button style={{ width: 20, justifyContent: 'center', alignItems: 'center', height: 30, backgroundColor: '#35B829' }}><Text>-</Text></Button></View>
-                                            <View style={{ padding: 10, justifyContent: 'center', alignItems: 'center' }}><Text style={{ fontSize: 22 }}>3</Text></View>
-                                            <View style={{ padding: 10 }}><Button style={{ width: 20, justifyContent: 'center', alignItems: 'center', height: 30, backgroundColor: '#35B829' }}><Text>+</Text></Button></View>
-                                            <View><Button style={{ padding: 5, backgroundColor: '#35B829', left: 15, width: 60, height: 70, top: -30, position: 'absolute', justifyContent: 'center', alignItems: 'center', borderRadius: 10 }}><Text style={{ color: 'white' }}>hapus</Text></Button></View>
+                            {/* mapping disin */}
+                            <View style={{ flexDirection: 'row' }}>
+                                <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                                    <Image source={require('../../../../android/img/5d492f045d831.jpg')} style={{ width: 80, height: 80, borderRadius: 5 }} />
+                                </View>
+                                <View style={{ flex: 3 }}>
+                                    <Text >Wortel</Text>
+                                    <Text >Rp.12000/50Ton</Text>
+                                    <View style={{ flexDirection: 'row' }}>
+                                        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                                            <Button style={{ justifyContent: 'center', alignItems: 'center', borderRadius: 50, width: 30, height: 30, backgroundColor: '#35B829' }}>
+                                                <Text style={{ color: 'white', fontSize: 20 }}>+</Text>
+                                            </Button>
+                                        </View>
+                                        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                                            <Item>
+                                                <Input style={{ justifyContent: 'center', alignItems: 'center' }} keyboardType={'numeric'} maxLength={20} />
+                                            </Item>
+                                        </View>
+                                        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                                            <Button style={{ justifyContent: 'center', alignItems: 'center', borderRadius: 50, width: 30, height: 30, backgroundColor: '#35B829' }} >
+                                                <Text style={{ color: 'white', fontSize: 20 }}>-</Text>
+                                            </Button>
+                                        </View>
+                                        <View style={{ flex: 3 }}>
+                                            {/* <Text>hello</Text> */}
+                                            <Icon name="delete" onPress={() => this.props.navigation.navigate('Order')} style={{ fontSize: 40, left: 16, color: '#35B829', position: 'absolute', top: 2 }}></Icon>
                                         </View>
                                     </View>
                                 </View>
+
                             </View>
 
                         </ScrollView>
+                        {/* <Footer>
+                            <Text> hello</Text>
+                        </Footer> */}
                     </View>
                 </View >
 

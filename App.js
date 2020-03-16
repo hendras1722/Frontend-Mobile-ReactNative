@@ -9,6 +9,7 @@ import HomeScreen from './src/Components/screen/Home/HomeScreen';
 import SearchScreen from './src/Components/screen/Search/SearchScreen'
 import OrderanScreen from './src/Components/screen/Order/OrderScreen';
 import TransactionScreen from './src/Components/screen/transaction/TransactionScreen'
+import DetailTransaction from './src/Components/screen/transaction/Detailtransaction'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 
@@ -19,13 +20,14 @@ const homeNavigator = createStackNavigator(
       screen: SearchScreen,
       navigationOptions: {
         tabBarVisible: false,
-        tabBarVisible: ({ state }) => ({
+        tabbar: ({ state }) => ({
           visible: false
         })
       },
     },
     Order: OrderanScreen,
-    Transaction: TransactionScreen
+    Transaction: TransactionScreen,
+    DetailTransaction: DetailTransaction
 
   }
 )
@@ -42,14 +44,6 @@ const tabNavigator = createBottomTabNavigator(
       navigationOptions: {
         tabBarIcon: ({ tintColor }) => (
           <Icon name="home" color={tintColor} style={{ fontSize: 30, color: '#848484' }}></Icon>
-        )
-      }
-    },
-    Order: {
-      screen: OrderanScreen,
-      navigationOptions: {
-        tabBarIcon: ({ tintColor }) => (
-          <Icon name="cart" style={{ fontSize: 30, color: '#848484' }}></Icon>
         )
       }
     },

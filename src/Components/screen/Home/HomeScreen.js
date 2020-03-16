@@ -41,7 +41,7 @@ class HomeScreen extends Component {
                             <View style={{ backgroundColor: '#35B829', height: 60, flexDirection: 'row' }}>
                                 <View style={{ flex: 4, justifyContent: 'center', alignItems: 'center' }}>
                                     <TouchableOpacity
-                                        style={{ backgroundColor: 'transparent', padding: 8, justifyContent: 'center', alignItems: 'center' }}
+                                        style={{ backgroundColor: 'transparent', justifyContent: 'center', alignItems: 'center' }}
                                     >
                                         <Button onPress={() => this.props.navigation.navigate('Search')} style={{ borderWidth: 1, borderColor: 'rgba(0, 0, 0, 0.1)', width: 260, height: 36, borderRadius: 5, paddingLeft: 35, paddingRight: 18, backgroundColor: "white", height: 40 }}><Text style={{ color: '#84878A' }}>Butuh Apa Ni??</Text>
                                             <Image source={require('../../../../android/img/drawable-mdpi/ic_magnify.png')} style={{ position: 'absolute', width: 25, height: 25, left: 5, top: 6 }} />
@@ -49,7 +49,11 @@ class HomeScreen extends Component {
                                     </TouchableOpacity>
                                 </View>
                                 <View style={{ flex: 1, justifyContent: 'center' }}>
-                                    <Icon name="cart" style={{ fontSize: 30, left: 16, color: 'white', position: 'absolute', top: 15 }}></Icon>
+                                    <TouchableOpacity onPress={() => this.props.navigation.navigate('Order')}
+                                        style={{ backgroundColor: 'transparent', padding: 8, justifyContent: 'center', alignItems: 'center' }}
+                                    >
+                                        <Icon name="cart" onPress={() => this.props.navigation.navigate('Order')} style={{ fontSize: 30, left: 16, color: 'white', position: 'absolute', top: -8 }}></Icon>
+                                    </TouchableOpacity>
                                 </View>
 
                             </View>
@@ -59,7 +63,7 @@ class HomeScreen extends Component {
                                     <View style={{ flex: 1, top: 20 }}>
                                         <ScrollView horizontal={true}>
                                             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                                                <Image source={require('../../../../android/img/promo-new_1580523127422_2000x800.jpg')} style={{ resizeMode: 'cover', left: 20 }} />
+                                                <Image source={require('../../../../android/img/promo-new_1580523127422_2000x800.jpg')} width={100} style={{ resizeMode: 'cover', left: 20 }} />
                                             </View>
                                         </ScrollView>
                                     </View>
@@ -106,7 +110,7 @@ class HomeScreen extends Component {
                                                         source={{ uri: item.image }}
                                                     />
                                                     <Text style={{ top: 20, left: 10 }}>{item.name_product}</Text>
-                                                    <Text style={{ top: 20, left: 10, fontSize: 9 }}>{item.shortDesc}</Text>
+                                                    <Text style={{ top: 20, left: 10, fontSize: 9 }}>{item.cardDesc}</Text>
                                                     <Text style={{ top: 25, left: 10, color: '#35B829' }}>Rp. {item.price}</Text>
                                                     <Text style={{ top: 8, left: 75, fontSize: 11 }}>{item.ingredients}</Text>
                                                     <Button
@@ -129,7 +133,7 @@ class HomeScreen extends Component {
                                                             source={{ uri: item.image }}
                                                         />
                                                         <Text style={{ top: 20, left: 10 }}>{item.name_product}</Text>
-                                                        <Text style={{ top: 20, left: 10, fontSize: 9 }}>{item.shortDesc}</Text>
+                                                        <Text style={{ top: 20, left: 10, fontSize: 9 }}>{item.cardDesc}</Text>
                                                         <Text style={{ top: 25, left: 10, color: '#35B829' }}>Rp. {item.price}</Text>
                                                         <Text style={{ top: 8, left: 75, fontSize: 11 }}>{item.ingredients}</Text>
                                                         <Button
@@ -153,7 +157,7 @@ class HomeScreen extends Component {
                                                             source={{ uri: item.image }}
                                                         />
                                                         <Text style={{ top: 20, left: 10 }}>{item.name_product}</Text>
-                                                        <Text style={{ top: 20, left: 10, fontSize: 9 }}>{item.shortDesc}</Text>
+                                                        <Text style={{ top: 20, left: 10, fontSize: 9 }}>{item.cardDesc}</Text>
                                                         <Text style={{ top: 25, left: 10, color: '#35B829' }}>Rp. {item.price}</Text>
                                                         <Text style={{ top: 8, left: 75, fontSize: 11 }}>{item.ingredients}</Text>
                                                         <Button

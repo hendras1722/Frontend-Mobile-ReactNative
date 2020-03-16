@@ -26,21 +26,19 @@ class TransactionScreen extends Component {
                             <Text style={{ fontSize: 22, color: 'white' }}>Transaksi</Text>
                         </View>
                         <View style={{ marginVertical: 10, padding: 10 }}>
-                            <Card>
-                                <CardItem>
-                                    <Body style={{ padding: 10, padding: 0 }}>
-                                        <View style={{ flex: 1, flexDirection: 'row' }}>
-                                            <Text>Id Booking : </Text>
-                                            <Text>MK00212993</Text>
-                                        </View>
-                                        <View style={{ flex: 1, flexDirection: 'column' }}>
-                                            <Text>Tanggal : </Text>
-                                            <Text>16 Maret 2020</Text>
-                                        </View>
-
-                                    </Body>
-                                </CardItem>
-                            </Card>
+                            <TouchableOpacity onPress={() => this.props.navigation.navigate('DetailTransaction')} >
+                                <Card onPress={() => this.props.navigation.navigate('DetailTransaction')}>
+                                    <CardItem onPress={() => this.props.navigation.navigate('DetailTransaction')}>
+                                        <Body style={{ padding: 10, padding: 0 }} onPress={() => this.props.navigation.navigate('DetailTransaction')}>
+                                            <View style={{ width: 300 }} onPress={() => this.props.navigation.navigate('DetailTransaction')}>
+                                                <Text>Id Booking : MK00212993 </Text>
+                                                <Text>Tanggal Pembelian : 16 Maret 2020</Text>
+                                                <Text style={{ fontSize: 10, top: 5, left: 230 }}>Status : <Text style={{ color: '#35B829' }}>Berhasil</Text></Text>
+                                            </View>
+                                        </Body>
+                                    </CardItem>
+                                </Card>
+                            </TouchableOpacity>
                         </View>
 
                     </View>
