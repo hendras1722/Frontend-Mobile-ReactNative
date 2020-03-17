@@ -59,7 +59,7 @@ class LoginScreen extends Component {
                             </View>
                             <View style={{ top: -60, marginHorizontal: 10, flexDirection: 'row', height: 200 }}>
                                 <View style={{ flex: 1, justifyContent: "center", alignItems: 'center' }}>
-                                    <Button style={{ width: 100, justifyContent: "center", alignItems: 'center', backgroundColor: '#D71149' }} onPress={() => this.props.navigation.navigate('Account')}>
+                                    <Button style={{ width: 100, justifyContent: "center", alignItems: 'center', backgroundColor: '#D71149' }} onPress={() => this.props.navigation.navigate('Login')}>
                                         <Text style={{ color: 'white' }}>Cancel</Text>
                                     </Button>
                                 </View>

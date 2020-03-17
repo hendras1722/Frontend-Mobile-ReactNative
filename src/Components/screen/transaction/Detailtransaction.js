@@ -21,9 +21,19 @@ class SearchScreen extends Component {
                 <View style={{ flex: 1 }}>
                     <StatusBar backgroundColor="#35B829" barStyle="light-content" />
                     <View >
-                        <View style={{ backgroundColor: '#35B829', height: 60, flexDirection: 'row', alignItems: 'center', padding: 10 }}>
-                            <Text style={{ fontSize: 22, color: 'white' }}>Detail</Text>
+                        <View style={{ backgroundColor: '#35B829', height: 60, flexDirection: 'row' }} >
+                            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }} onPress={() => this.props.navigation.navigate('Account')}>
+                                <Icon onPress={() => this.props.navigation.navigate('Transaction')} name="arrow-left-circle" style={{ fontSize: 40, left: 10, color: 'white', position: 'absolute', top: 10 }}></Icon>
+
+                            </View>
+                            <View style={{ flex: 5, justifyContent: 'center' }}>
+                                {/* <Icon name="cart" style={{ fontSize: 30, left: 16, color: 'white', position: 'absolute', top: 15 }}></Icon> */}
+                                <View style={{ flex: 1, justifyContent: 'center' }}>
+                                    <Text style={{ fontSize: 22, color: 'white' }}>Detail</Text>
+                                </View>
+                            </View>
                         </View>
+
                         <View style={{}}>
                             <View style={{ marginVertical: 10, backgroundColor: '#bbb3b361', padding: 10 }}>
                                 <Text>Penerima</Text>

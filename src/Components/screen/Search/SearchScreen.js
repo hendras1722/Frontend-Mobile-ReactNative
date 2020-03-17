@@ -36,6 +36,17 @@ class SearchScreen extends Component {
                                 </View>
                             </View>
                         </View>
+                        <View style={{ marginVertical: 10, padding: 10 }}>
+                            <ScrollView horizontal={true}>
+                                <View style={{ flexDirection: 'row', width: 400 }}>
+                                    <Button style={{ padding: 10, borderRadius: 50, backgroundColor: '#35B829' }}><Text style={{ color: 'white' }}>Murah</Text></Button>
+                                    <Button style={{ padding: 10, borderRadius: 50, backgroundColor: '#35B829', left: 10 }}><Text style={{ color: 'white' }}>New</Text></Button>
+                                    <Button style={{ padding: 10, borderRadius: 50, backgroundColor: '#35B829', left: 20 }}><Text style={{ color: 'white' }}>Lokal</Text></Button>
+                                    <Button style={{ padding: 10, borderRadius: 50, backgroundColor: '#35B829', left: 30 }}><Text style={{ color: 'white' }}>Impor</Text></Button>
+
+                                </View>
+                            </ScrollView>
+                        </View>
                         <View style={{ marginVertical: 10, backgroundColor: '#bbb3b361', padding: 10 }}>
                             <Text>Search By Category</Text>
                         </View>
