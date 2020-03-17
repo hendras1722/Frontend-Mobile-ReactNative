@@ -6,7 +6,7 @@ import { TextInput } from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import ImagePicker from 'react-native-image-picker';
 
-class InfoAkun extends Component {
+class BuatAkunScreen extends Component {
     static navigationOptions = {
         headerShown: false,
         tabBarVisible: true,
@@ -15,11 +15,10 @@ class InfoAkun extends Component {
             backgroundColor: 'red'
         }
     };
-
     state = {
-        selected: undefined,
         photo: null,
-        namePhoto: ''
+        namePhoto: '',
+        selected: undefined
     }
 
     handleChoosePhoto = () => {
@@ -44,11 +43,13 @@ class InfoAkun extends Component {
         });
     };
 
+
     onValueChange(event) {
         this.setState({
             selected: event
         });
     }
+
     render() {
         console.disableYellowBox = true
         const { photo } = this.state;
@@ -61,7 +62,7 @@ class InfoAkun extends Component {
                         {/* <StatusBar hidden={route.statusBarHidden} /> */}
                         <View style={{ backgroundColor: '#35B829', height: 60, flexDirection: 'row' }}>
                             <View style={{ flex: 1, justifyContent: 'center', padding: 10 }}>
-                                <Text style={{ fontSize: 22, color: 'white' }}>Akun</Text>
+                                <Text style={{ fontSize: 22, color: 'white' }}>Akun Baru</Text>
                             </View>
                         </View>
 
@@ -186,4 +187,4 @@ class InfoAkun extends Component {
     }
 }
 
-export default InfoAkun
+export default BuatAkunScreen

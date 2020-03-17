@@ -13,42 +13,16 @@ import DetailTransaction from './src/Components/screen/transaction/Detailtransac
 import AccountScreen from './src/Components/screen/Account/AccountScreen'
 import InfoAkun from './src/Components/screen/Layout/InfoAkun'
 import LoginScreen from './src/Components/screen/Login/LoginScreen'
+import PasswordScreen from './src/Components/screen/Layout/ChangePassword'
+import Password1Screen from './src/Components/screen/Layout/ChangePasswordlogin'
+import BuatAkunScreen from './src/Components/screen/BuatAkun/BuatAkunScreen'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 
-const homeNavigator = createStackNavigator(
-  {
-    Home: HomeScreen,
-    Search: {
-      screen: SearchScreen,
-      navigationOptions: {
-        tabBarVisible: false,
-        tabbar: ({ state }) => ({
-          visible: false
-        })
-      },
-    },
-    Order: OrderanScreen,
-    Transaction: TransactionScreen,
-    DetailTransaction: DetailTransaction,
-    Account: AccountScreen,
-    InfoAkun: InfoAkun,
-    Login: LoginScreen
-  },
-  {
-    initialRouteName: 'Login',
-  }
-)
-// const AppNavigator = createSwitchNavigator(
-//   {
-//     Home: homeNavigator,
-//     Search: SearchScreen
-//   }
-// );
 const tabNavigator = createBottomTabNavigator(
   {
     Home: {
-      screen: homeNavigator,
+      screen: HomeScreen,
       navigationOptions: {
         tabBarIcon: ({ tintColor }) => (
           <Icon name="home" color={tintColor} style={{ fontSize: 30, color: '#848484' }}></Icon>
@@ -71,15 +45,49 @@ const tabNavigator = createBottomTabNavigator(
         )
       },
     },
-  },
-  {
-    initialRouteName: 'Home',
-    activeColor: '#000',
-    inactiveColor: '#000'
   }
 )
 
-const AppContainer = createAppContainer(tabNavigator);
+const homeNavigator = createStackNavigator(
+  {
+    Home: {
+      screen: tabNavigator,
+      navigationOptions: {
+        headerShown: false
+      }
+    },
+    Search: {
+      screen: SearchScreen,
+      navigationOptions: {
+        tabBarVisible: false,
+        tabbar: ({ state }) => ({
+          visible: false
+        })
+      },
+    },
+    Order: OrderanScreen,
+    Transaction: TransactionScreen,
+    DetailTransaction: DetailTransaction,
+    Account: AccountScreen,
+    InfoAkun: InfoAkun,
+    UbahPassword: PasswordScreen,
+    UbahPassword1: Password1Screen,
+    BuatAkun: BuatAkunScreen
+  }
+)
+const AppNavigator = createSwitchNavigator(
+  {
+    Home: homeNavigator,
+    Login: LoginScreen,
+    Search: SearchScreen
+  },
+  {
+    initialRouteName: 'Login',
+  }
+);
+
+
+const AppContainer = createAppContainer(AppNavigator);
 
 function App() {
   return (

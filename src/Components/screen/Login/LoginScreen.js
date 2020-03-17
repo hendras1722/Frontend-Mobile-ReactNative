@@ -16,6 +16,7 @@ class LoginScreen extends Component {
     };
 
     state = {
+        password: '',
         selected: undefined
     }
 
@@ -34,9 +35,6 @@ class LoginScreen extends Component {
                     <View >
                         {/* <StatusBar hidden={route.statusBarHidden} /> */}
                         <View style={{ backgroundColor: '#35B829', height: 60, flexDirection: 'row' }}>
-                            <View style={{ flex: 1, justifyContent: 'center', padding: 10 }}>
-                                <Text style={{ fontSize: 22, color: 'white' }}>Akun</Text>
-                            </View>
                         </View>
 
                         {/* mPping disini */}
@@ -45,20 +43,8 @@ class LoginScreen extends Component {
                                 <View style={{ top: -5, justifyContent: 'center', alignItems: 'center' }}>
                                     <Image
                                         style={{ width: 100, height: 100, borderRadius: 10, marginHorizontal: 10, borderRadius: 80 }}
-                                        source={require('../../../../android/img/img_avatar.png')}
+                                        source={require('../../../../android/img/logo-makyur-01.png')}
                                     />
-                                </View>
-                                <View style={{ flexDirection: 'row', top: 10 }}>
-                                    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', height: 30 }}>
-                                        <Item style={{ width: 150 }}>
-                                            <Input placeholder="Nama Depan" />
-                                        </Item>
-                                    </View>
-                                    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', height: 30 }}>
-                                        <Item style={{ width: 150 }} >
-                                            <Input placeholder="Nama Belakang" />
-                                        </Item>
-                                    </View>
                                 </View>
                                 <View style={{ top: 10, padding: 10 }}>
                                     <View style={{ justifyContent: 'center', alignItems: 'center' }}>
@@ -68,78 +54,33 @@ class LoginScreen extends Component {
                                     </View>
                                     <View style={{ justifyContent: 'center', alignItems: 'center' }}>
                                         <Item >
-                                            <Input placeholder="Nomer Telephone" keyboardType={'numeric'} />
-                                        </Item>
-                                    </View>
-                                    <View style={{ justifyContent: 'center', alignItems: 'center', top: 10, flexDirection: 'row' }}>
-                                        <View style={{ flex: 1 }}>
-                                            <Picker
-                                                mode="dropdown"
-                                                iosIcon={<Icon name="arrow-down" />}
-                                                placeholder="Choose"
-                                                placeholderStyle={{ color: "#bfc6ea" }}
-                                                placeholderIconColor="#007aff"
-                                                style={{ width: undefined }}
-                                                selectedValue={this.state.selected}
-                                                onValueChange={this.onValueChange.bind(this)}
-                                            >
-                                                <Picker.Item label="DKI Jakarta" value="key0" />
-                                            </Picker>
-                                        </View>
-                                        <View style={{ flex: 1 }}>
-                                            <Picker
-                                                mode="dropdown"
-                                                iosIcon={<Icon name="arrow-down" />}
-                                                placeholder="Choose"
-                                                placeholderStyle={{ color: "#bfc6ea" }}
-                                                placeholderIconColor="#007aff"
-                                                style={{ width: undefined }}
-                                                selectedValue={this.state.selected}
-                                                onValueChange={this.onValueChange.bind(this)}
-                                            >
-                                                <Picker.Item label="Jakarta Pusat" value="key0" />
-                                                <Picker.Item label="Jakarta Barat" value="key1" />
-                                            </Picker>
-                                        </View>
-                                        <View style={{ flex: 1 }}>
-                                            <Picker
-                                                mode="dropdown"
-                                                iosIcon={<Icon name="arrow-down" />}
-                                                placeholder="Choose"
-                                                placeholderStyle={{ color: "#bfc6ea" }}
-                                                placeholderIconColor="#007aff"
-                                                style={{ width: undefined }}
-                                                selectedValue={this.state.selected}
-                                                onValueChange={this.onValueChange.bind(this)}
-                                            >
-                                                <Picker.Item label="Cingkareng" value="key0" />
-                                            </Picker>
-                                        </View>
-                                    </View>
-                                    <View style={{ justifyContent: 'center', alignItems: 'center', top: 10 }}>
-                                        <Item >
-                                            <Input placeholder="Alamat Lengkap" />
+                                            <Input placeholder="Kata Sandi" secureTextEntry={true} />
                                         </Item>
                                     </View>
                                 </View>
-                                <View style={{ top: 40, marginHorizontal: 10, flexDirection: 'row', height: 50 }}>
-                                    <View style={{ flex: 1, justifyContent: "center", alignItems: 'center' }}>
-                                        <Button style={{ width: 100, justifyContent: "center", alignItems: 'center', backgroundColor: '#D71149' }} onPress={() => this.props.navigation.navigate('Home')}>
-                                            <Text style={{ color: 'white' }}>Cancel</Text>
+                                <View style={{ top: 30, marginHorizontal: 10, height: 100 }}>
+                                    <View style={{ flex: 1, justifyContent: "center", alignItems: 'center', top: 10 }}>
+                                        <Button style={{ width: 320, justifyContent: "center", alignItems: 'center', backgroundColor: '#35B829', borderRadius: 5 }} onPress={() => this.props.navigation.navigate('Home')}>
+                                            <Text style={{ color: 'white' }}>Masuk</Text>
                                         </Button>
+                                        <Text onPress={() => this.props.navigation.navigate('UbahPassword1')} style={{ top: 20, fontSize: 18, color: '#35B829' }}>Lupa Kata Sandi?</Text>
                                     </View>
-                                    <View style={{ flex: 1, justifyContent: "center", alignItems: 'center' }}>
-                                        <Button style={{ width: 100, justifyContent: "center", alignItems: 'center', backgroundColor: '#35B829' }}>
-                                            <Text style={{ color: 'white' }}>Save</Text>
-                                        </Button>
+                                    <View style={{ flex: 1, justifyContent: "center", alignItems: 'center', top: 40 }}>
+                                        <View>
+                                            <Text style={{ color: '#aeb3b9', top: 15 }}> ────────  <Text style={{ color: 'black' }}>Atau</Text>  ──────── </Text>
+                                        </View>
+                                        <View>
+                                            <Button onPress={() => this.props.navigation.navigate('BuatAkun')} style={{ top: 30, width: 200, justifyContent: 'center', alignItems: 'center', borderRadius: 5, backgroundColor: 'transparent', borderWidth: 2, borderColor: '#35B829' }}>
+                                                <Text style={{ color: '#35B829' }} >Buat Akun Baru</Text>
+                                            </Button>
+                                        </View>
                                     </View>
-
                                 </View>
                             </View>
                         </ScrollView>
                     </View>
                 </View>
-            </View>
+            </View >
         )
     }
 }

@@ -16,9 +16,15 @@ class OrderanScreen extends Component {
                     <StatusBar backgroundColor="#35B829" barStyle="light-content" />
                     <View >
                         {/* <StatusBar hidden={route.statusBarHidden} /> */}
-                        <View style={{ backgroundColor: '#35B829', height: 60, flexDirection: 'row' }}>
-                            <View style={{ flex: 1, justifyContent: 'center', padding: 10 }}>
-                                <Text style={{ fontSize: 22, color: 'white' }}>Order</Text>
+                        <View style={{ backgroundColor: '#35B829', height: 60, flexDirection: 'row' }} >
+                            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }} onPress={() => this.props.navigation.navigate('Account')}>
+                                <Icon onPress={() => this.props.navigation.navigate('Home')} name="arrow-left-circle" style={{ fontSize: 40, left: 10, color: 'white', position: 'absolute', top: 10 }}></Icon>
+                            </View>
+                            <View style={{ flex: 5, justifyContent: 'center' }}>
+                                {/* <Icon name="cart" style={{ fontSize: 30, left: 16, color: 'white', position: 'absolute', top: 15 }}></Icon> */}
+                                <View style={{ flex: 1, justifyContent: 'center' }}>
+                                    <Text style={{ fontSize: 22, color: 'white' }}>Akun Baru</Text>
+                                </View>
                             </View>
                         </View>
 

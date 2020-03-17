@@ -48,8 +48,8 @@ class Account extends Component {
                             <View style={{ flexDirection: 'row', justifyContent: 'center' }}>
                                 <View style={{ flex: 6, height: 100 }}>
                                     <Text style={{ left: 20 }} onPress={() => this.props.navigation.navigate('InfoAkun')} >Info Akun  </Text>
-                                    <Text style={{ left: 20, top: 10 }}>Ubah Password  </Text>
-                                    <Text style={{ left: 20, top: 20 }}>Keluar  </Text>
+                                    <Text style={{ left: 20, top: 10 }} onPress={() => this.props.navigation.navigate('UbahPassword')}>Ubah Password  </Text>
+                                    <Text style={{ left: 20, top: 20 }} onPress={() => this.props.navigation.navigate('Login')}>Keluar  </Text>
                                 </View>
 
                                 <View style={{ flex: 1, height: 100 }}>
