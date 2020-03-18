@@ -67,7 +67,7 @@ class InfoAkun extends Component {
 
                         {/* mPping disini */}
                         <ScrollView >
-                            <View style={{ padding: 20, maxHeight: 800, height: 650 }}>
+                            <View style={{ padding: 20, maxHeight: 800, height: 630 }}>
                                 <View style={{ flexDirection: 'row' }}>
                                     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
                                         <Item style={{ width: 100 }}>
@@ -83,11 +83,6 @@ class InfoAkun extends Component {
                                 <View>
                                     <Item >
                                         <Input placeholder="Email" />
-                                    </Item>
-                                </View>
-                                <View>
-                                    <Item>
-                                        <Input placeholder="Password" />
                                     </Item>
                                 </View>
                                 <View>

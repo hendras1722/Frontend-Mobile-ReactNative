@@ -80,9 +80,6 @@ const AppNavigator = createSwitchNavigator(
     Home: homeNavigator,
     Login: LoginScreen,
     Search: SearchScreen
-  },
-  {
-    initialRouteName: 'Login',
   }
 );
 

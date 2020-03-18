@@ -168,12 +168,12 @@ class BuatAkunScreen extends Component {
                                 </View>
                                 <View style={{ top: 50, marginHorizontal: 10, flexDirection: 'row' }}>
                                     <View style={{ flex: 1, justifyContent: "center", alignItems: 'center' }}>
-                                        <Button style={{ width: 100, justifyContent: "center", alignItems: 'center', backgroundColor: '#D71149' }} onPress={() => this.props.navigation.navigate('Account')}>
+                                        <Button style={{ width: 100, justifyContent: "center", alignItems: 'center', backgroundColor: '#D71149' }} onPress={() => this.props.navigation.navigate('Login')}>
                                             <Text style={{ color: 'white' }}>Cancel</Text>
                                         </Button>
                                     </View>
                                     <View style={{ flex: 1, justifyContent: "center", alignItems: 'center' }}>
-                                        <Button style={{ width: 100, justifyContent: "center", alignItems: 'center', backgroundColor: '#35B829' }}>
+                                        <Button style={{ width: 100, justifyContent: "center", alignItems: 'center', backgroundColor: '#35B829' }} onPress={() => this.props.navigation.navigate('Login')}>
                                             <Text style={{ color: 'white' }}>Save</Text>
                                         </Button>
                                     </View>

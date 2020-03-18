@@ -31,7 +31,7 @@ class TransactionScreen extends Component {
                                     <CardItem onPress={() => this.props.navigation.navigate('DetailTransaction')}>
                                         <Body style={{ padding: 10, padding: 0 }} onPress={() => this.props.navigation.navigate('DetailTransaction')}>
                                             <View style={{ width: 300 }} onPress={() => this.props.navigation.navigate('DetailTransaction')}>
-                                                <Text>Id Booking : MK00212993 </Text>
+                                                <Text>ID Purchase : MK00212993 </Text>
                                                 <Text>Tanggal Pembelian : 16 Maret 2020</Text>
                                                 <Text style={{ fontSize: 10, top: 5, left: 230 }}>Status : <Text style={{ color: '#35B829' }}>Berhasil</Text></Text>
                                             </View>
