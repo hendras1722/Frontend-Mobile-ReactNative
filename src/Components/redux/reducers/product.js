@@ -106,6 +106,20 @@ const product = (state = initialState, action) => {
                 products: action.payload.data.result
             }
 
+        case 'FILTER_PRODUCT_PENDING':
+            return {
+                ...state
+            }
+        case 'FILTER_PRODUCT_REJECTED':
+            return {
+                ...state
+            }
+        case 'FILTER_PRODUCT_FULFILLED':
+            return {
+                ...state,
+                products: action.payload.data.result
+            }
+
         default:
             return state;
     }
