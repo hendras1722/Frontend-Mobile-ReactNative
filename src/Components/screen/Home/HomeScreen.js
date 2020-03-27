@@ -186,7 +186,7 @@ class HomeScreen extends Component {
                     </View>
                 </View>
             </Fragment>
-        )
+        )  
     }
 }
 
