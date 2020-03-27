@@ -8,7 +8,7 @@ const cart = (state = initialState, action) => {
         case 'ADD_CART_DATA':
             let filterCartId = state.carts.map(product => {
                 if (product.id === action.payload.id) {
-                    product.qty += 1
+                    product.quantity += 1
 
                     return action.payload
                 }
@@ -27,7 +27,7 @@ const cart = (state = initialState, action) => {
             }
             else { // kalo gaada
                 let newTotal = state.total + action.payload.price
-                action.payload.qty = 1;
+                action.payload.quantity = 1;
                 return {
                     ...state,
                     carts: [...state.carts, action.payload],
@@ -42,20 +42,20 @@ const cart = (state = initialState, action) => {
                 return {
                     ...state,
                     carts: filterCartIdForDelete,
-                    total: state.total - existedCartDelete.price * existedCartDelete.qty
+                    total: state.total - existedCartDelete.price * existedCartDelete.quantity
                 }
             }
 
-        case 'ADD_QTY':
+        case 'ADD_QUANTITY':
             const addQty = state.carts.map(product => {
                 if (product.id === action.payload) {
-                    product.qty += 1
+                    product.quantity += 1
                 }
                 return product
             })
             let existedCartAdd = state.carts.find(product => product.id === action.payload)
-            if (existedCartAdd.qty > existedCartAdd.stock) { // kalo ada
-                existedCartAdd.qty = existedCartAdd.stock;
+            if (existedCartAdd.quantity > existedCartAdd.quantity) { // kalo ada
+                existedCartAdd.quantity = existedCartAdd.quantity;
                 return {
                     ...state,
                 }
@@ -67,17 +67,17 @@ const cart = (state = initialState, action) => {
                 }
             }
 
-        case 'REDUCE_QTY':
+        case 'REDUCE_QUANTITY':
             const reduceQty = state.carts.map(product => {
                 if (product.id === action.payload) {
-                    product.qty = product.qty - 1
+                    product.quantity = product.quantity - 1
                 }
                 return product
             })
             let existedCartReduce = state.carts.find(product => product.id === action.payload)
-            if (existedCartReduce.qty <= 0) { // kalo ada
+            if (existedCartReduce.quantity <= 0) { // kalo ada
                 // alert("Cannot Reduce Below 0! ext (-1 -2 -3)")
-                existedCartReduce.qty = 1;
+                existedCartReduce.quantity = 1;
                 return {
                     ...state,
                 }

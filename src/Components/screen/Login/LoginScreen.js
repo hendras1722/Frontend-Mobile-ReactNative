@@ -2,8 +2,11 @@ import React, { Component } from 'react'
 import { InputGroup, View, Container, Header, Item, Input, Button, Card, CardItem, Body, Picker } from 'native-base';
 import { Text, Image, ScrollView, StatusBar, TouchableOpacity } from 'react-native'
 import { TextInput } from 'react-native-gesture-handler';
-// import App from './src/Components/screen/Home/backgou';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+
+import AsyncStorage from '@react-native-community/async-storage';
+import { connect } from 'react-redux';
+import { loginUser } from '../../redux/actions/user'
 
 class LoginScreen extends Component {
     static navigationOptions = {
@@ -15,16 +18,29 @@ class LoginScreen extends Component {
         }
     };
 
-    state = {
-        password: '',
-        selected: undefined
+    constructor(props) {
+        super(props)
+        this.state = {
+            email: '',
+            password: ''
+        }
     }
 
-    onValueChange(event) {
-        this.setState({
-            selected: event
-        });
+    componentDidMount() {
+        // this.get()
+        // this.clear()
     }
+
+    onSubmit = async event => {
+        event.preventDefault()
+        const data = {
+            email: this.state.email,
+            password: this.state.password
+        }
+        await this.props.dispatch(loginUser(data))
+        await this.props.navigation.navigate('Home')
+    }
+
     render() {
         console.disableYellowBox = true
         return (
@@ -49,18 +65,18 @@ class LoginScreen extends Component {
                                 <View style={{ top: 10, padding: 10 }}>
                                     <View style={{ justifyContent: 'center', alignItems: 'center' }}>
                                         <Item >
-                                            <Input placeholder="Email" />
+                                            <Input placeholder="Email" onChangeText={(text) => this.setState({ email: text })} />
                                         </Item>
                                     </View>
                                     <View style={{ justifyContent: 'center', alignItems: 'center' }}>
                                         <Item >
-                                            <Input placeholder="Kata Sandi" secureTextEntry={true} />
+                                            <Input placeholder="Kata Sandi" secureTextEntry={true} onChangeText={(text) => this.setState({ password: text })} />
                                         </Item>
                                     </View>
                                 </View>
                                 <View style={{ top: 30, marginHorizontal: 10, height: 100 }}>
                                     <View style={{ flex: 1, justifyContent: "center", alignItems: 'center', top: 10 }}>
-                                        <Button style={{ width: 320, justifyContent: "center", alignItems: 'center', backgroundColor: '#35B829', borderRadius: 5 }} onPress={() => this.props.navigation.navigate('Home')}>
+                                        <Button style={{ width: 320, justifyContent: "center", alignItems: 'center', backgroundColor: '#35B829', borderRadius: 5 }} onPress={this.onSubmit}>
                                             <Text style={{ color: 'white' }}>Masuk</Text>
                                         </Button>
                                         <Text onPress={() => this.props.navigation.navigate('UbahPassword1')} style={{ top: 20, fontSize: 18, color: '#35B829' }}>Lupa Kata Sandi?</Text>
@@ -85,4 +101,4 @@ class LoginScreen extends Component {
     }
 }
 
-export default LoginScreen
+export default connect()(LoginScreen);

@@ -1,11 +1,12 @@
 import React, { Component, Fragment } from 'react'
-import { connect } from 'react-redux';
-import { InputGroup, View, Container, Header, Item, Input, Button, Card, CardItem, Body } from 'native-base';
+import { InputGroup, View, Container, Header, Item, Input, Button, Card, CardItem, Body, Badge } from 'native-base';
 import { Text, Image, ScrollView, StatusBar, FlatList, TouchableOpacity } from 'react-native'
 import { TextInput } from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
+import { connect } from 'react-redux';
 import { readProduct, readProductImport, readProductLocal } from '../../redux/actions/product'
+import { addToCart } from '../../redux/actions/cart'
 
 class HomeScreen extends Component {
     static navigationOptions = {
@@ -18,6 +19,10 @@ class HomeScreen extends Component {
         }
     };
 
+    state = {
+        count: null
+    }
+
     componentDidMount() {
         this.readProductAll()
     }
@@ -28,8 +33,12 @@ class HomeScreen extends Component {
         await this.props.dispatch(readProductLocal())
     }
 
+    addToCart = async data => {
+        await this.props.dispatch(addToCart(data))
+    }
+
     render() {
-        const { products, productsImport, productsLocal } = this.props
+        const { products, productsImport, productsLocal, carts } = this.props
         console.disableYellowBox = true
         return (
             <Fragment>
@@ -41,10 +50,10 @@ class HomeScreen extends Component {
                             <View style={{ backgroundColor: '#35B829', height: 60, flexDirection: 'row' }}>
                                 <View style={{ flex: 4, justifyContent: 'center', alignItems: 'center' }}>
                                     <TouchableOpacity
-                                        style={{ backgroundColor: 'transparent', justifyContent: 'center', alignItems: 'center' }}
+                                        style={{ backgroundColor: 'transparent', justifyContent: 'center', alignItems: 'center' }} onPress={() => this.props.navigation.navigate('Search')}
                                     >
                                         <Button onPress={() => this.props.navigation.navigate('Search')} style={{ borderWidth: 1, borderColor: 'rgba(0, 0, 0, 0.1)', width: 260, height: 36, borderRadius: 5, paddingLeft: 35, paddingRight: 18, backgroundColor: "white", height: 40 }}><Text style={{ color: '#84878A' }}>Butuh Apa Ni??</Text>
-                                            <Image source={require('../../../../android/img/drawable-mdpi/ic_magnify.png')} style={{ position: 'absolute', width: 25, height: 25, left: 5, top: 6 }} />
+                                            <Image source={require('../../../../android/img/drawable-mdpi/ic_magnify.png')} style={{ position: 'absolute', width: 25, height: 25, left: 5, top: 6 }} onPress={() => this.props.navigation.navigate('Search')} />
                                         </Button>
                                     </TouchableOpacity>
                                 </View>
@@ -53,6 +62,7 @@ class HomeScreen extends Component {
                                         style={{ backgroundColor: 'transparent', padding: 8, justifyContent: 'center', alignItems: 'center' }}
                                     >
                                         <Icon name="cart" onPress={() => this.props.navigation.navigate('Order')} style={{ fontSize: 30, left: 16, color: 'white', position: 'absolute', top: -8 }}></Icon>
+                                        <Text>{carts.length}</Text>
                                     </TouchableOpacity>
                                 </View>
 
@@ -74,8 +84,8 @@ class HomeScreen extends Component {
                                     <Text style={{ top: 10, left: 20 }}>Menu Favorite</Text>
                                     <View style={{ height: 20, marginVertical: 20, width: 310, height: 142, left: 20, flexDirection: 'row' }}>
                                         <View style={{ flex: 1 }}>
-                                            <Image source={require('../../../../android/img/32367broccoli_98849.png')} style={{ position: 'absolute', width: 38, height: 38, left: 17, top: 10 }} />
-                                            <Text style={{ top: 50, position: 'absolute', marginHorizontal: 10 }}>Sayuran</Text>
+                                            <Image source={require('../../../../android/img/32367broccoli_98849.png')} style={{ position: 'absolute', width: 38, height: 38, left: 17, top: 10 }} onPress={() => this.props.navigation.navigate('Sayuran')} />
+                                            <Text style={{ top: 50, position: 'absolute', marginHorizontal: 10 }} onPress={() => this.props.navigation.navigate('Sayuran')}>Sayuran</Text>
                                             <Image source={require('../../../../android/img/new_25355.png')} style={{ position: 'absolute', width: 38, height: 38, left: 17, top: 80 }} />
                                             <Text style={{ top: 120, position: 'absolute', marginHorizontal: 10 }}>Terbaru</Text>
                                         </View>
@@ -104,18 +114,18 @@ class HomeScreen extends Component {
                                     <ScrollView horizontal={true} >
                                         <View style={{ maxHeight: 230, height: 230, flexDirection: 'row' }}>
                                             {products.map((item, index) =>
-                                                <View style={{ padding: 10 }} key={index}>
+                                                <View style={{ padding: 10, width: 130, marginHorizontal: 10 }} key={index}>
                                                     <Image
                                                         style={{ width: 116, height: 72, top: 10, borderRadius: 10 }}
                                                         source={{ uri: item.image }}
                                                     />
-                                                    <Text style={{ top: 20, left: 10 }}>{item.name_product}</Text>
-                                                    <Text style={{ top: 20, left: 10, fontSize: 9 }}>{item.cardDesc}</Text>
-                                                    <Text style={{ top: 25, left: 10, color: '#35B829' }}>Rp. {item.price}</Text>
-                                                    <Text style={{ top: 8, left: 75, fontSize: 11 }}>{item.ingredients}</Text>
+                                                    <Text style={{ top: 20, left: 10 }} ellipsizeMode='tail' numberOfLines={1}>{item.name_product}</Text>
+                                                    <Text style={{ top: 20, left: 10, fontSize: 9 }} ellipsizeMode='tail' numberOfLines={1}>{item.cardDesc}</Text>
+                                                    <Text style={{ top: 25, left: 5, color: '#35B829' }} ellipsizeMode='tail' numberOfLines={1}>Rp. {item.price}/<Text style={{ color: 'black', fontSize: 8 }}>{item.ingredients}</Text></Text>
+                                                    {/* <Text style={{ top: 8, left: 75, fontSize: 11 }} ellipsizeMode='tail' numberOfLines={1}>{item.ingredients}</Text> */}
                                                     <Button
-                                                        style={{ width: 116, top: 20, alignItems: 'center', justifyContent: 'center', backgroundColor: '#35B829', borderRadius: 3, height: 35 }}
-                                                    ><Text style={{ color: 'white' }}>order</Text></Button>
+                                                        style={{ width: 116, top: 30, alignItems: 'center', justifyContent: 'center', backgroundColor: '#35B829', borderRadius: 3, height: 35 }}
+                                                        onPress={() => this.addToCart(item)}><Text style={{ color: 'white' }}>order</Text></Button>
                                                 </View>
                                             )}
                                         </View>
@@ -127,18 +137,18 @@ class HomeScreen extends Component {
                                         <ScrollView horizontal={true} >
                                             <View style={{ maxHeight: 230, height: 230, flexDirection: 'row' }}>
                                                 {productsImport.map((item, index) =>
-                                                    <View style={{ padding: 10 }} key={index}>
+                                                    <View style={{ padding: 10, width: 130, marginHorizontal: 10 }} key={index}>
                                                         <Image
                                                             style={{ width: 116, height: 72, top: 10, borderRadius: 10 }}
                                                             source={{ uri: item.image }}
                                                         />
-                                                        <Text style={{ top: 20, left: 10 }}>{item.name_product}</Text>
-                                                        <Text style={{ top: 20, left: 10, fontSize: 9 }}>{item.cardDesc}</Text>
-                                                        <Text style={{ top: 25, left: 10, color: '#35B829' }}>Rp. {item.price}</Text>
-                                                        <Text style={{ top: 8, left: 75, fontSize: 11 }}>{item.ingredients}</Text>
+                                                        <Text style={{ top: 20, left: 10 }} ellipsizeMode='tail' numberOfLines={1}>{item.name_product}</Text>
+                                                        <Text style={{ top: 20, left: 10, fontSize: 9 }} ellipsizeMode='tail' numberOfLines={1}>{item.cardDesc}</Text>
+                                                        <Text style={{ top: 25, left: 5, color: '#35B829' }} ellipsizeMode='tail' numberOfLines={1}>Rp. {item.price}/<Text style={{ color: 'black', fontSize: 8 }}>{item.ingredients}</Text></Text>
+                                                        {/* <Text style={{ top: 8, left: 75, fontSize: 11 }}>{item.ingredients}</Text> */}
                                                         <Button
-                                                            style={{ width: 116, top: 20, alignItems: 'center', justifyContent: 'center', backgroundColor: '#35B829', borderRadius: 3, height: 35 }}
-                                                        ><Text style={{ color: 'white' }}>order</Text></Button>
+                                                            style={{ width: 116, top: 30, alignItems: 'center', justifyContent: 'center', backgroundColor: '#35B829', borderRadius: 3, height: 35 }}
+                                                            onPress={() => this.addToCart(item)}><Text style={{ color: 'white' }}>order</Text></Button>
                                                     </View>
                                                 )}
                                             </View>
@@ -151,18 +161,18 @@ class HomeScreen extends Component {
                                         <ScrollView horizontal={true} >
                                             <View style={{ maxHeight: 230, height: 230, flexDirection: 'row' }}>
                                                 {productsLocal.map((item, index) =>
-                                                    <View style={{ padding: 10 }} key={index}>
+                                                    <View style={{ padding: 10, width: 130, marginHorizontal: 10 }} key={index}>
                                                         <Image
                                                             style={{ width: 116, height: 72, top: 10, borderRadius: 10 }}
                                                             source={{ uri: item.image }}
                                                         />
-                                                        <Text style={{ top: 20, left: 10 }}>{item.name_product}</Text>
-                                                        <Text style={{ top: 20, left: 10, fontSize: 9 }}>{item.cardDesc}</Text>
-                                                        <Text style={{ top: 25, left: 10, color: '#35B829' }}>Rp. {item.price}</Text>
-                                                        <Text style={{ top: 8, left: 75, fontSize: 11 }}>{item.ingredients}</Text>
+                                                        <Text style={{ top: 20, left: 10 }} ellipsizeMode='tail' numberOfLines={1}>{item.name_product}</Text>
+                                                        <Text style={{ top: 20, left: 10, fontSize: 9 }} ellipsizeMode='tail' numberOfLines={1}>{item.cardDesc}</Text>
+                                                        <Text style={{ top: 25, left: 5, color: '#35B829' }} ellipsizeMode='tail' numberOfLines={1}>Rp. {item.price}/<Text style={{ color: 'black', fontSize: 8 }}>{item.ingredients}</Text></Text>
+                                                        {/* <Text style={{ top: 8, left: 75, fontSize: 11 }} ellipsizeMode='tail' numberOfLines={1}>{item.ingredients}</Text> */}
                                                         <Button
-                                                            style={{ width: 116, top: 20, alignItems: 'center', justifyContent: 'center', backgroundColor: '#35B829', borderRadius: 3, height: 35 }}
-                                                        ><Text style={{ color: 'white' }}>order</Text></Button>
+                                                            style={{ width: 116, top: 30, alignItems: 'center', justifyContent: 'center', backgroundColor: '#35B829', borderRadius: 3, height: 35 }}
+                                                            onPress={() => this.addToCart(item)}><Text style={{ color: 'white' }}>order</Text></Button>
                                                     </View>
                                                 )}
                                             </View>
@@ -183,6 +193,7 @@ class HomeScreen extends Component {
 
 const mapStateToProps = (state) => {
     return {
+        carts: state.carts.carts,
         products: state.products.products,
         productsImport: state.products.productsImport,
         productsLocal: state.products.productsLocal

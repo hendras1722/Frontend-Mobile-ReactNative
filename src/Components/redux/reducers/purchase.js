@@ -1,39 +1,39 @@
 const initialState = {
-    orders: []
+    purchases: []
 }
 
-const order = (state = initialState, action) => {
+const purchase = (state = initialState, action) => {
     switch (action.type) {
-        case 'ORDER_CHECKOUT_PENDING':
+        case 'CHECKOUT_PURCHASE_PENDING':
             return {
                 ...state
             }
-        case 'ORDER_CHECKOUT_REJECTED':
+        case 'CHECKOUT_PURCHASE_REJECTED':
             return {
                 ...state
             }
-        case 'ORDER_CHECKOUT_FULFILLED':
+        case 'CHECKOUT_PURCHASE_FULFILLED':
             return {
                 ...state,
-                orders: action.payload.data.result
+                purchases: action.payload.data.result
             }
 
-        case 'READ_ORDER_PENDING':
+        case 'READ_PURCHASE_PENDING':
             return {
                 ...state
             }
-        case 'READ_ORDER_REJECTED':
+        case 'READ_PURCHASE_REJECTED':
             return {
                 ...state
             }
-        case 'READ_ORDER_FULFILLED':
+        case 'READ_PURCHASE_FULFILLED':
             return {
                 ...state,
-                orders: action.payload.data.result
+                purchases: action.payload.data.result
             }
         default:
             return state;
     }
 }
 
-export default order
+export default purchase

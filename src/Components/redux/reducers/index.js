@@ -1,17 +1,17 @@
 import { combineReducers } from 'redux';
 
 import products from './product';
-// import categorys from './category';
-// import users from './user';
-// import carts from './cart';
-// import orders from './order';
+import users from './user';
+import regions from './region'
+import carts from './cart';
+import purchases from './purchase';
 // import auth from './auth';
 
 export default combineReducers({
     products,
-    // categorys,
-    // users,
-    // carts,
-    // orders,
+    users,
+    regions,
+    carts,
+    purchases,
     // auth
 });

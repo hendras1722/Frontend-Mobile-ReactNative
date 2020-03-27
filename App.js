@@ -16,6 +16,7 @@ import LoginScreen from './src/Components/screen/Login/LoginScreen'
 import PasswordScreen from './src/Components/screen/Layout/ChangePassword'
 import Password1Screen from './src/Components/screen/Layout/ChangePasswordlogin'
 import BuatAkunScreen from './src/Components/screen/BuatAkun/BuatAkunScreen'
+import SayuranScreen from './src/Components/screen/Layout/SayuranScreen'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 
@@ -72,7 +73,8 @@ const homeNavigator = createStackNavigator(
     InfoAkun: InfoAkun,
     UbahPassword: PasswordScreen,
     UbahPassword1: Password1Screen,
-    BuatAkun: BuatAkunScreen
+    BuatAkun: BuatAkunScreen,
+    Sayuran: SayuranScreen
   }
 )
 const AppNavigator = createSwitchNavigator(

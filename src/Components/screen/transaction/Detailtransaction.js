@@ -50,7 +50,7 @@ class SearchScreen extends Component {
                             </View>
                             {/* Mapping disini */}
 
-                            <View style={{ marginVertical: 10, top: -20, backgroundColor: '#bbb3b361', padding: 10, top: 70, maxHeight: 200, height: 200 }}>
+                            <View style={{ marginVertical: 10, top: -20, padding: 10, top: 70, maxHeight: 200, height: 200 }}>
                                 <ScrollView >
                                     <View style={{ height: 70 }}>
                                         <View style={{ padding: 0, flexDirection: 'row', top: 10 }}>
