@@ -10,9 +10,9 @@ class Account extends Component {
     static navigationOptions = {
         headerShown: false,
         tabBarVisible: true,
-        activeTintColor: 'blue',
-        tabStyle: {
-            backgroundColor: 'red'
+        tabBarOptions: {
+            activeTintColor: 'green',
+            inactiveTintColor: 'gray',
         }
     };
 

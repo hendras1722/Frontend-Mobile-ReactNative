@@ -13,9 +13,11 @@ const category = (state = initialState, action) => {
                 ...state
             }
         case 'CREATE_CATEGORY_FULFILLED':
+            console.log(categorys)
             return {
                 ...state,
                 categorys: action.payload.data.result
+
             }
 
         case 'READ_CATEGORY_PENDING':

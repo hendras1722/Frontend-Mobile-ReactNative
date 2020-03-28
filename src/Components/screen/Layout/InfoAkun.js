@@ -46,8 +46,6 @@ class InfoAkun extends Component {
         this.props.dispatch(readSubCity())
     }
 
-    asyc
-
     async get() {
         try {
             let getId = await AsyncStorage.getItem("id")
@@ -166,17 +164,15 @@ class InfoAkun extends Component {
                         {/* mPping disini */}
                         <ScrollView >
                             <View style={{ padding: 20, maxHeight: 800, height: 630 }}>
-                                <View style={{ flexDirection: 'row' }}>
-                                    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                                        <Item style={{ width: 100 }}>
-                                            <TextInput placeholder="Nama Depan" onChangeText={(text) => this.setState({ first_name: text })}>{this.state.first_name}</TextInput>
-                                        </Item>
-                                    </View>
-                                    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                                        <Item style={{ width: 100 }}>
-                                            <TextInput placeholder="Nama Belakang" onChangeText={(text) => this.setState({ last_name: text })}>{this.state.last_name}</TextInput>
-                                        </Item>
-                                    </View>
+                                <View>
+                                    <Item >
+                                        <TextInput placeholder="Nama Depan" onChangeText={(text) => this.setState({ email: text })}>{this.state.email}</TextInput>
+                                    </Item>
+                                </View>
+                                <View>
+                                    <Item >
+                                        <TextInput placeholder="Nama Belakang" onChangeText={(text) => this.setState({ email: text })}>{this.state.email}</TextInput>
+                                    </Item>
                                 </View>
                                 <View>
                                     <Item >
@@ -252,14 +248,15 @@ class InfoAkun extends Component {
                                 </View>
                                 <View>
                                     <Item >
-                                        <TextInput placeholder="Alamat Lengkap" keyboardType={'numeric'} onChangeText={(text) => this.setState({ address: text })}>{this.state.address}</TextInput>
+                                        <TextInput placeholder="Alamat Lengkap" onChangeText={(text) => this.setState({ address: text })}>{this.state.address}</TextInput>
                                     </Item>
                                 </View>
                                 <View>
 
                                 </View>
-                                <View style={{ flexDirection: 'row', top: 10 }}>
+                                <View style={{ flexDirection: 'row', top: 10, height: 130 }}>
                                     <View style={{ flex: 1 }}>
+                                        <Text>Choose</Text>
                                         <Icon name="camera" style={{ fontSize: 30, left: 10, color: '#35B829', top: 10 }} onPress={this.handleChooseImage}></Icon>
                                         <Icon name="file" style={{ fontSize: 30, left: 10, color: '#35B829', top: 30 }} onPress={this.handleUploadImage}></Icon>
 
@@ -275,7 +272,7 @@ class InfoAkun extends Component {
                                         <Text style={{ flexWrap: 'nowrap' }}>{this.state.nameImage}</Text>
                                     </View>
                                 </View>
-                                <View style={{ top: 50, marginHorizontal: 10, flexDirection: 'row' }}>
+                                <View style={{ top: 30, marginHorizontal: 10, flexDirection: 'row' }}>
                                     <View style={{ flex: 1, justifyContent: "center", alignItems: 'center' }}>
                                         <Button style={{ width: 100, justifyContent: "center", alignItems: 'center', backgroundColor: '#D71149' }} onPress={() => this.props.navigation.navigate('Account')}>
                                             <Text style={{ color: 'white' }}>Cancel</Text>

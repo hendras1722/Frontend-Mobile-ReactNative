@@ -86,7 +86,7 @@ class LoginScreen extends Component {
                                             <Text style={{ color: '#aeb3b9', top: 15 }}> ────────  <Text style={{ color: 'black' }}>Atau</Text>  ──────── </Text>
                                         </View>
                                         <View>
-                                            <Button onPress={() => this.props.navigation.navigate('BuatAkun')} style={{ top: 30, width: 200, justifyContent: 'center', alignItems: 'center', borderRadius: 5, backgroundColor: 'transparent', borderWidth: 2, borderColor: '#35B829' }}>
+                                            <Button onPress={() => this.props.navigation.navigate('Home')} style={{ top: 30, width: 200, justifyContent: 'center', alignItems: 'center', borderRadius: 5, backgroundColor: 'transparent', borderWidth: 2, borderColor: '#35B829' }}>
                                                 <Text style={{ color: '#35B829' }} >Buat Akun Baru</Text>
                                             </Button>
                                         </View>

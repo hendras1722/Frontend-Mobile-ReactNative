@@ -9,10 +9,6 @@ class SearchScreen extends Component {
     static navigationOptions = {
         headerShown: false,
         tabBarVisible: true,
-        activeTintColor: 'blue',
-        tabStyle: {
-            backgroundColor: 'red'
-        }
     };
     render() {
         console.disableYellowBox = true
@@ -52,15 +48,15 @@ class SearchScreen extends Component {
 
                             <View style={{ marginVertical: 10, top: -20, padding: 10, top: 70, maxHeight: 200, height: 200 }}>
                                 <ScrollView >
-                                    <View style={{ height: 70 }}>
+                                    <View style={{ height: 70, borderColor: '#a3a3a3', borderWidth: 0.25 }}>
                                         <View style={{ padding: 0, flexDirection: 'row', top: 10 }}>
                                             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
                                                 {/* <Text>List Barang</Text> */}
                                                 <Image source={require('../../../../android/img/5d492f045d831.jpg')} style={{ width: 50, height: 50, borderRadius: 5 }} />
                                             </View>
-                                            <View style={{ flex: 3 }}>
-                                                <Text>Wortel</Text>
-                                                <Text style={{ top: 5 }}>Rp. 12000/50KG</Text>
+                                            <View style={{ flex: 2 }}>
+                                                <Text ellipsizeMode='tail' numberOfLines={1}>Wortel</Text>
+                                                <Text style={{ top: 5 }} ellipsizeMode='tail' numberOfLines={1}>Rp. 12000/5000KG</Text>
                                             </View>
                                             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
                                                 <Text>QTY</Text>
@@ -69,8 +65,16 @@ class SearchScreen extends Component {
                                     </View>
                                 </ScrollView>
                             </View>
-                            <View style={{ backgroundColor: '#35B829', marginVertical: 70, justifyContent: 'center', alignItems: 'center', height: 63 }}>
-                                <Text style={{ fontSize: 20 }}>Total harga: Rp. 26000 </Text>
+                            <View style={{ marginVertical: 70, justifyContent: 'center', alignItems: 'center', height: 63, borderTopColor: '#a3a3a3', borderTopWidth: 1, flexDirection: 'row' }}>
+                                <View style={{ flex: 2 }}>
+                                    <Text style={{ paddingLeft: 20, fontSize: 10 }}>Tanggal : </Text>
+                                    <Text style={{ paddingLeft: 20, fontSize: 15 }}>20 Maret 2050</Text>
+                                </View>
+                                <View style={{ flex: 1 }}>
+                                    <Text style={{ fontSize: 10 }}>Total harga : </Text>
+
+                                    <Text style={{ fontSize: 15, top: 3 }}> Rp. 26000 </Text>
+                                </View>
                             </View>
                         </View>
                     </View>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
@@ -18,7 +18,7 @@ import Password1Screen from './src/Components/screen/Layout/ChangePasswordlogin'
 import BuatAkunScreen from './src/Components/screen/BuatAkun/BuatAkunScreen'
 import SayuranScreen from './src/Components/screen/Layout/SayuranScreen'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-
+import SplashScreen from 'react-native-splash-screen'
 
 const tabNavigator = createBottomTabNavigator(
   {
@@ -26,7 +26,7 @@ const tabNavigator = createBottomTabNavigator(
       screen: HomeScreen,
       navigationOptions: {
         tabBarIcon: ({ tintColor }) => (
-          <Icon name="home" color={tintColor} style={{ fontSize: 30, color: '#848484' }}></Icon>
+          <Icon name="home" color={tintColor} style={{ fontSize: 30 }}></Icon>
         )
       }
     },
@@ -34,7 +34,7 @@ const tabNavigator = createBottomTabNavigator(
       screen: TransactionScreen,
       navigationOptions: {
         tabBarIcon: ({ tintColor }) => (
-          <Icon name="script-text" style={{ fontSize: 30, color: '#848484' }}></Icon>
+          <Icon name="script-text" color={tintColor} style={{ fontSize: 30 }}></Icon>
         )
       }
     },
@@ -42,7 +42,7 @@ const tabNavigator = createBottomTabNavigator(
       screen: AccountScreen,
       navigationOptions: {
         tabBarIcon: ({ tintColor }) => (
-          <Icon name="account" style={{ fontSize: 30, color: '#848484' }}></Icon>
+          <Icon name="account" color={tintColor} style={{ fontSize: 30 }}></Icon>
         )
       },
     },
@@ -89,6 +89,9 @@ const AppNavigator = createSwitchNavigator(
 const AppContainer = createAppContainer(AppNavigator);
 
 function App() {
+  useEffect(() => {
+    SplashScreen.hide()
+  }, [])
   return (
     <Provider store={store}>
       <AppContainer />

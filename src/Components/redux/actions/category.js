@@ -6,7 +6,7 @@ export const createCategory = (data) => {
         type: "CREATE_CATEGORY",
         payload: axios({
             method: "POST",
-            url: `http://192.168.1.3:3004/api/category`,
+            url: `http://192.168.1.3:4111/category`,
             data: data
         })
     }
@@ -17,7 +17,7 @@ export const readCategory = () => {
         type: "READ_CATEGORY",
         payload: axios({
             method: "GET",
-            url: `http://192.168.1.3:3004/api/category`
+            url: `http://192.168.1.3:4111/category`
         })
     }
 }
@@ -27,7 +27,7 @@ export const updateCategory = (categoryId, data) => {
         type: 'UPDATE_CATEGORY',
         payload: axios({
             method: "PATCH",
-            url: `http://192.168.1.3:3004/api/category/${categoryId}`,
+            url: `http://192.168.1.3:4111/category/${categoryId}`,
             data: data
         })
     }
@@ -38,7 +38,7 @@ export const deleteCategory = (categoryId) => {
         type: 'DELETE_CATEGORY',
         payload: axios({
             method: "DELETE",
-            url: `http://192.168.1.3:3004/api/category/${categoryId}`
+            url: `http://192.168.1.3:4111/category/${categoryId}`
         })
     }
 }
@@ -48,7 +48,7 @@ export const searchCategory = (data) => {
         type: 'SEARCH_CATEGORY',
         payload: axios({
             method: "GET",
-            url: `http://192.168.1.3:3004/api/category/${data}`
+            url: `http://192.168.1.3:4111/category/${data}`
         })
     }
 }

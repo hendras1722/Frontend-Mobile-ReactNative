@@ -192,11 +192,15 @@ class OrderanScreen extends Component {
                                 </ScrollView>
                             </View>
                             <View>
-                                <View style={{ backgroundColor: '#35B829', height: 72, justifyContent: 'center', alignItems: 'center' }}>
-                                    <Text>Total Harga : </Text>
+                                <View style={{ backgroundColor: '#35B829', height: 75, justifyContent: 'center', alignItems: 'center' }}>
+                                    <Text style={{ marginVertical: 5 }}>Total Harga : </Text>
                                     <View style={{ flexDirection: 'row' }}>
-                                        <Button style={{ padding: 10, left: -10, backgroundColor: 'white', borderRadius: 20 }} onPress={() => (this.onCancleCart(carts))}><Text>Cancel</Text></Button>
-                                        <Button style={{ padding: 10, left: 10, backgroundColor: 'white', borderRadius: 20 }} onPress={this.onSubmit}><Text>Checkout</Text></Button>
+                                        <View style={{ flex: 1 }}>
+                                            <Button style={{ backgroundColor: 'white', justifyContent: 'center', alignItems: 'center', backgroundColor: '#45e936' }} onPress={() => (this.onCancleCart(carts))}><Text style={{}}>Cancel</Text></Button>
+                                        </View>
+                                        <View style={{ flex: 1 }}>
+                                            <Button style={{ backgroundColor: 'green', justifyContent: 'center', alignItems: 'center' }} onPress={this.onSubmit}><Text style={{ color: 'white' }}>Checkout</Text></Button>
+                                        </View>
                                     </View>
                                 </View>
                             </View>

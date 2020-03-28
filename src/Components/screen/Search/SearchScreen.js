@@ -7,6 +7,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { connect } from 'react-redux';
 
 import { readProduct, filterProduct } from '../../redux/actions/product'
+import { readCategory } from '../../redux/actions/category'
 
 class SearchScreen extends Component {
     static navigationOptions = {
@@ -26,6 +27,7 @@ class SearchScreen extends Component {
 
     componentDidMount() {
         this.readProductAll()
+        this.readCategoryAll()
     }
 
     onSort = async group => {
@@ -43,12 +45,17 @@ class SearchScreen extends Component {
         await this.props.dispatch(filterProduct(this.state.group, category, this.state.product))
     };
 
+    async readCategoryAll() {
+        await this.props.dispatch(readCategory())
+    }
+
     async readProductAll() {
         await this.props.dispatch(readProduct())
     }
     render() {
         console.disableYellowBox = true
-        const { products } = this.props
+        const { products, categorys } = this.props
+        console.log(this.props)
         return (
             // <Text>hello</Text>
             <View style={{ flex: 1 }}>
@@ -76,72 +83,45 @@ class SearchScreen extends Component {
 
                             </View>
                         </View>
-                        <ScrollView >
+                        <ScrollView horizontal={false}>
                             <View style={{ marginVertical: -2, backgroundColor: '#bbb3b361', padding: 10 }}>
                                 <Text>Search By Category</Text>
                             </View>
+                            {/* <ScrollView horizontal={true}> */}
                             <View style={{ flexDirection: 'row' }}>
-                                <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', padding: 10 }}>
-                                    <Button style={{ width: 50, borderRadius: 10, backgroundColor: "transparent", justifyContent: 'center', alignItems: 'center', borderColor: '#35B829', borderWidth: 3.0, marginVertical: 5 }} onPress={() => (this.onCategory(""))}>
-                                        <Text style={{ color: '#35B829' }} value="">All</Text>
-                                    </Button>
-                                    <Button style={{ width: 65, borderRadius: 10, backgroundColor: "transparent", justifyContent: 'center', alignItems: 'center', borderColor: '#35B829', borderWidth: 3.0, marginVertical: 5 }} onPress={() => (this.onCategory("1"))}>
-                                        <Text style={{ color: '#35B829' }} value="1" >Sayuran</Text>
-                                    </Button>
+                                <View style={{ padding: 10, flexDirection: 'row', flex: 1, flexWrap: 'wrap', alignItems: 'flex-start', justifyContent: 'center', alignItems: 'center' }}>
+
+                                    {/* Mapping disini */}
+                                    <View >
+                                        <Button style={{ width: 50, borderRadius: 10, backgroundColor: "transparent", justifyContent: 'center', alignItems: 'center', borderColor: '#35B829', borderWidth: 3.0, marginVertical: 5, marginHorizontal: 5 }} onPress={() => (this.onCategory(""))}>
+                                            <Text style={{ color: '#35B829' }} value="">All</Text>
+                                        </Button>
+                                    </View>
+
+
                                 </View>
-                                <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', padding: 10 }}>
-                                    <Button style={{ width: 60, borderRadius: 10, backgroundColor: "transparent", justifyContent: 'center', alignItems: 'center', borderColor: '#35B829', borderWidth: 3.0, marginVertical: 5 }} onPress={() => (this.onCategory("2"))}>
-                                        <Text style={{ color: '#35B829' }} value="2">Buah</Text>
-                                    </Button>
-                                    <Button style={{ width: 60, borderRadius: 10, backgroundColor: "transparent", justifyContent: 'center', alignItems: 'center', borderColor: '#35B829', borderWidth: 3.0, marginVertical: 5 }} onPress={() => (this.onCategory("3"))}>
-                                        <Text style={{ color: '#35B829' }} value="3">Pokok</Text>
-                                    </Button>
-                                </View>
-                                <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', padding: 10 }}>
-                                    <Button style={{ width: 60, borderRadius: 10, backgroundColor: "transparent", justifyContent: 'center', alignItems: 'center', borderColor: '#35B829', borderWidth: 3.0, marginVertical: 5 }} onPress={() => (this.onCategory("4"))}>
-                                        <Text style={{ color: '#35B829' }} value="4">Ikan</Text>
-                                    </Button>
-                                    <Button style={{ width: 65, borderRadius: 10, backgroundColor: "transparent", justifyContent: 'center', alignItems: 'center', borderColor: '#35B829', borderWidth: 3.0, marginVertical: 5 }} onPress={() => (this.onCategory("5"))}>
-                                        <Text style={{ color: '#35B829' }} value="5">Protein</Text>
-                                    </Button>
-                                </View>
-                                <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', padding: 10 }}>
-                                    <Button style={{ width: 60, borderRadius: 10, backgroundColor: "transparent", justifyContent: 'center', alignItems: 'center', borderColor: '#35B829', borderWidth: 3.0, marginVertical: 5 }} onPress={() => (this.onCategory("6"))}>
-                                        <Text style={{ color: '#35B829' }} value="6">Susu</Text>
-                                    </Button>
-                                    <Button style={{ width: 60, borderRadius: 10, backgroundColor: "transparent", justifyContent: 'center', alignItems: 'center', borderColor: '#35B829', borderWidth: 3.0, marginVertical: 5 }} onPress={() => (this.onCategory("7"))}>
-                                        <Text style={{ color: '#35B829' }} value="7">Bumbu</Text>
-                                    </Button>
-                                </View>
-                                <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', padding: 10 }}>
-                                    <Button style={{ width: 80, borderRadius: 10, backgroundColor: "transparent", justifyContent: 'center', alignItems: 'center', borderColor: '#35B829', borderWidth: 3.0, marginVertical: 5 }} onPress={() => (this.onCategory("8"))}>
-                                        <Text style={{ color: '#35B829' }} value="8">Karbohidrat</Text>
-                                    </Button>
-                                    <Button style={{ width: 80, borderRadius: 10, backgroundColor: "transparent", justifyContent: 'center', alignItems: 'center', borderColor: '#35B829', borderWidth: 3.0, marginVertical: 5 }} onPress={() => (this.onCategory("9"))}>
-                                        <Text style={{ color: '#35B829' }} value="9">Umbi-Umbi</Text>
-                                    </Button>
-                                </View>
+
                             </View>
                             <View style={{ marginVertical: 2, backgroundColor: '#bbb3b361', padding: 10 }}>
+
                                 <Text>Search By All Product</Text>
                             </View>
                             {/* mPping disini */}
 
-                            <View style={{ flex: 1, flexDirection: 'row', flexWrap: 'wrap', alignItems: 'flex-start' }} >
+                            <View style={{ flex: 1, flexDirection: 'row', flexWrap: 'wrap', alignItems: 'flex-start', justifyContent: 'center', alignItems: 'center' }} >
                                 {products.map((item, index) =>
-                                    <View style={{ height: 400, maxHeight: 300 }} key={index}>
+                                    <View style={{ padding: 10, width: 130, marginHorizontal: 10, marginVertical: 10 }} key={index}>
                                         <Image
-                                            style={{ width: 116, height: 72, top: 10, borderRadius: 10, marginHorizontal: 10 }}
+                                            style={{ width: 116, height: 72, top: 10, borderRadius: 10 }}
                                             source={{ uri: item.image }}
                                         />
-                                        <Text style={{ top: 20, left: 18 }}>{item.name_product}</Text>
-                                        <Text style={{ top: 20, left: 18, fontSize: 9 }}>{item.cardDesc}</Text>
-                                        <Text style={{ top: 25, left: 18, color: '#35B829' }}>Rp.{item.price}</Text>
-                                        <Text style={{ top: 8, left: 88, fontSize: 11 }}>{item.ingredients}</Text>
+                                        <Text style={{ top: 20, left: 10 }} ellipsizeMode='tail' numberOfLines={1}>{item.name_product}</Text>
+                                        <Text style={{ top: 20, left: 10, fontSize: 9 }} ellipsizeMode='tail' numberOfLines={1}>{item.cardDesc}</Text>
+                                        <Text style={{ top: 25, left: 5, color: '#35B829' }} ellipsizeMode='tail' numberOfLines={1}>Rp. {item.price}/<Text style={{ color: 'black', fontSize: 8 }}>{item.ingredients}</Text></Text>
+                                        {/* <Text style={{ top: 8, left: 75, fontSize: 11 }} ellipsizeMode='tail' numberOfLines={1}>{item.ingredients}</Text> */}
                                         <Button
-                                            style={{ width: 116, top: 20, alignItems: 'center', justifyContent: 'center', backgroundColor: '#35B829', borderRadius: 3, height: 35, left: 10 }}
-
-                                        ><Text style={{ color: 'white' }}>order</Text></Button>
+                                            style={{ width: 116, top: 30, alignItems: 'center', justifyContent: 'center', backgroundColor: '#35B829', borderRadius: 3, height: 35 }}
+                                            onPress={() => this.addToCart(item)}><Text style={{ color: 'white' }}>order</Text></Button>
                                     </View>
                                 )}
                             </View>
@@ -155,8 +135,10 @@ class SearchScreen extends Component {
 
 
 const mapStateToProps = (state) => {
+    console.log(state)
     return {
-        products: state.products.products
+        products: state.products.products,
+        // categorys: state.categorys.categorys
     }
 }
 

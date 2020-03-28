@@ -12,10 +12,8 @@ class HomeScreen extends Component {
     static navigationOptions = {
         headerShown: false,
         tabBarOptions: {
-            activeTintColor: 'blue'
-        },
-        style: {
-            backgroundColor: '#171F33' // TabBar background
+            activeTintColor: 'green',
+            inactiveTintColor: 'gray',
         }
     };
 
@@ -40,8 +38,9 @@ class HomeScreen extends Component {
     render() {
         const { products, productsImport, productsLocal, carts } = this.props
         console.disableYellowBox = true
+        // console.log('statusBarHeight: ', StatusBar.currentHeight); untuk menghitung ukuran status bar
         return (
-            <Fragment>
+            <Fragment >
                 <View style={{ flex: 1 }}>
                     <View style={{ flex: 1 }}>
                         <StatusBar backgroundColor="#35B829" barStyle="light-content" />
@@ -62,7 +61,9 @@ class HomeScreen extends Component {
                                         style={{ backgroundColor: 'transparent', padding: 8, justifyContent: 'center', alignItems: 'center' }}
                                     >
                                         <Icon name="cart" onPress={() => this.props.navigation.navigate('Order')} style={{ fontSize: 30, left: 16, color: 'white', position: 'absolute', top: -8 }}></Icon>
-                                        <Text>{carts.length}</Text>
+                                        {/* <Badge style={{ padding: 5, position: 'absolute', left: 30, justifyContent: 'center', alignItems: 'center', borderRadius: 50 }}> */}
+                                        <Icon name="alert-octagram" style={{ fontSize: 18, left: 30, color: 'red', position: 'absolute', top: -10 }}></Icon>
+                                        {/* </Badge> */}
                                     </TouchableOpacity>
                                 </View>
 
