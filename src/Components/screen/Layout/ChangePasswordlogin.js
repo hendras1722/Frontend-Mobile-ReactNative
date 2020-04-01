@@ -53,7 +53,7 @@ class LoginScreen extends Component {
                                 </View>
                                 <View >
                                     <Item >
-                                        <Input placeholder="Passwordmu" />
+                                        <Input placeholder="Passwordmu" secureTextEntry={true} />
                                     </Item>
                                 </View>
                             </View>

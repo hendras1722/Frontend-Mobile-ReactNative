@@ -9,10 +9,11 @@ class TransactionScreen extends Component {
     static navigationOptions = {
         headerShown: false,
         tabBarVisible: true,
-        activeTintColor: 'green',
-        tabStyle: {
-            backgroundColor: 'blue'
+        tabBarOptions: {
+            activeTintColor: 'green',
+            inactiveTintColor: 'gray',
         }
+        // activeTintColor: 'green',
     };
     render() {
         console.disableYellowBox = true
@@ -32,8 +33,13 @@ class TransactionScreen extends Component {
                                         <Body style={{ padding: 10, padding: 0 }} onPress={() => this.props.navigation.navigate('DetailTransaction')}>
                                             <View style={{ width: 300 }} onPress={() => this.props.navigation.navigate('DetailTransaction')}>
                                                 <Text>ID Purchase : MK00212993 </Text>
-                                                <Text>Tanggal Pembelian : 16 Maret 2020</Text>
-                                                <Text style={{ fontSize: 10, top: 5, left: 230 }}>Status : <Text style={{ color: '#35B829' }}>Berhasil</Text></Text>
+                                                <View style={{ top: 5 }}>
+                                                    <Text>Tanggal Pembelian : 16 Maret 2020</Text>
+                                                </View>
+                                                <View style={{ top: 15 }}>
+                                                    <Icon name="cash" style={{ fontSize: 30, color: '#35B829' }}><Icon name="arrow-right-thick" style={{ fontSize: 30, color: '#a3a3a3' }}><Icon name="cube-send" style={{ fontSize: 30, color: '#a3a3a3' }}><Icon name="arrow-right-thick" style={{ fontSize: 30, color: '#a3a3a3' }}><Icon name="home-map-marker" style={{ fontSize: 30, color: '#a3a3a3' }}></Icon></Icon></Icon></Icon></Icon>
+                                                </View>
+                                                <Text style={{ fontSize: 10, top: 5, left: 200 }}>Pembayaran : <Text style={{ color: '#35B829' }}>Berhasil</Text></Text>
                                             </View>
                                         </Body>
                                     </CardItem>
