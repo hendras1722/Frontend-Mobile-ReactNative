@@ -1,10 +1,13 @@
-import React from 'react';
+import React from "react";
+
+import { PersistGate } from 'redux-persist/integration/react';
+import { Provider } from 'react-redux';
+import { store, persistor } from './src/Components/redux/store';
+
 import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
-import { Provider } from 'react-redux'
 
-import store from './src/Components/redux/store';
 import HomeScreen from './src/Components/screen/Home/HomeScreen';
 import SearchScreen from './src/Components/screen/Search/SearchScreen'
 import OrderanScreen from './src/Components/screen/Order/OrderScreen';
@@ -79,8 +82,8 @@ const homeNavigator = createStackNavigator(
 )
 const AppNavigator = createSwitchNavigator(
   {
-    Home: homeNavigator,
     Login: LoginScreen,
+    Home: homeNavigator,
     Search: SearchScreen
   }
 );
@@ -91,7 +94,9 @@ const AppContainer = createAppContainer(AppNavigator);
 function App() {
   return (
     <Provider store={store}>
-      <AppContainer />
+      <PersistGate persistor={persistor}>
+        <AppContainer />
+      </PersistGate>
     </Provider>
   )
 }

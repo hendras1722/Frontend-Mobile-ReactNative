@@ -1,12 +1,10 @@
 import React, { Component } from 'react'
 import { InputGroup, View, Container, Header, Item, Input, Button, Card, CardItem, Body, Picker } from 'native-base';
 import { Text, Image, ScrollView, StatusBar, TouchableOpacity } from 'react-native'
-import { TextInput } from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
-import AsyncStorage from '@react-native-community/async-storage';
 import { connect } from 'react-redux';
-import { loginUser } from '../../redux/actions/user'
+import { login } from '../../redux/actions/auth'
 
 class LoginScreen extends Component {
     static navigationOptions = {
@@ -27,8 +25,9 @@ class LoginScreen extends Component {
     }
 
     componentDidMount() {
-        // this.get()
-        // this.clear()
+        if (this.props.auth.isAuthenticated) {
+            this.props.navigation.navigate('Home')
+        }
     }
 
     onSubmit = async event => {
@@ -37,7 +36,7 @@ class LoginScreen extends Component {
             email: this.state.email,
             password: this.state.password
         }
-        await this.props.dispatch(loginUser(data))
+        await this.props.dispatch(login(data))
         await this.props.navigation.navigate('Home')
     }
 
@@ -101,4 +100,10 @@ class LoginScreen extends Component {
     }
 }
 
-export default connect()(LoginScreen);
+const mapStateToProps = (state) => {
+    return {
+        auth: state.auth
+    }
+}
+
+export default connect(mapStateToProps)(LoginScreen);

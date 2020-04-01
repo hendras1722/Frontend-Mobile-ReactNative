@@ -6,6 +6,10 @@ import { TextInput } from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import ImagePicker from 'react-native-image-picker';
 
+import { readProvince, readCity, readSubCity } from '../../redux/actions/region'
+import { createAccount } from '../../redux/actions/auth'
+import { connect } from 'react-redux';
+
 class BuatAkunScreen extends Component {
     static navigationOptions = {
         headerShown: false,
@@ -15,10 +19,26 @@ class BuatAkunScreen extends Component {
             backgroundColor: 'red'
         }
     };
+
     state = {
-        photo: null,
+        selected: undefined,
         namePhoto: '',
-        selected: undefined
+        email: '',
+        first_name: '',
+        last_name: '',
+        password: '',
+        id_province: '' || 1,
+        id_city: '' || 1,
+        id_sub_city: '' || 1,
+        address: '',
+        no_telephone: '',
+        image: null
+    }
+
+    componentDidMount() {
+        this.props.dispatch(readProvince())
+        this.props.dispatch(readCity())
+        this.props.dispatch(readSubCity())
     }
 
     handleChoosePhoto = () => {
@@ -27,7 +47,7 @@ class BuatAkunScreen extends Component {
         };
         ImagePicker.launchCamera(options, response => {
             if (response.uri) {
-                this.setState({ photo: response, namePhoto: response.fileName });
+                this.setState({ image: response, namePhoto: response.fileName });
             }
         });
     };
@@ -38,21 +58,44 @@ class BuatAkunScreen extends Component {
         };
         ImagePicker.launchImageLibrary(options, response => {
             if (response.uri) {
-                this.setState({ photo: response, namePhoto: response.fileName });
+                this.setState({ image: response, namePhoto: response.fileName });
             }
         });
     };
 
-
-    onValueChange(event) {
-        this.setState({
-            selected: event
-        });
+    onSubmit = async (event) => {
+        event.preventDefault()
+        const data = new FormData()
+        data.append('email', this.state.email)
+        data.append('first_name', this.state.first_name)
+        data.append('last_name', this.state.last_name)
+        data.append('password', this.state.password)
+        data.append('id_province', this.state.id_province)
+        data.append('id_city', this.state.id_city)
+        data.append('id_sub_city', this.state.id_sub_city)
+        data.append('address', this.state.address)
+        data.append('no_telephone', this.state.no_telephone)
+        if ((this.state.image === null) === true) {
+            alert('Silahkan Login!')
+            await this.props.dispatch(createAccount(data));
+            await this.props.navigation.navigate('Login');
+        } else if ((this.state.image === null) === false) {
+            let File = {
+                name: this.state.image.fileName,
+                type: this.state.image.type,
+                uri: this.state.image.uri
+            }
+            data.append('image', File)
+            alert('Silahkan Login!')
+            await this.props.dispatch(createAccount(data));
+            await this.props.navigation.navigate('Login');
+        }
     }
 
     render() {
         console.disableYellowBox = true
-        const { photo } = this.state;
+        const { image } = this.state;
+        const { province, city, subcity } = this.props
         return (
             // <Text>hello</Text>
             <View style={{ flex: 1 }}>
@@ -72,28 +115,28 @@ class BuatAkunScreen extends Component {
                                 <View style={{ flexDirection: 'row' }}>
                                     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
                                         <Item style={{ width: 100 }}>
-                                            <Input placeholder="Nama Depan" />
+                                            <Input placeholder="Nama Depan" onChangeText={(text) => this.setState({ first_name: text })} />
                                         </Item>
                                     </View>
                                     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
                                         <Item style={{ width: 100 }}>
-                                            <Input placeholder="Nama Belakang" />
+                                            <Input placeholder="Nama Belakang" onChangeText={(text) => this.setState({ last_name: text })} />
                                         </Item>
                                     </View>
                                 </View>
                                 <View>
                                     <Item >
-                                        <Input placeholder="Email" />
+                                        <Input placeholder="Email" onChangeText={(text) => this.setState({ email: text })} />
                                     </Item>
                                 </View>
                                 <View>
                                     <Item>
-                                        <Input placeholder="Password" />
+                                        <Input placeholder="Password" secureTextEntry onChangeText={(text) => this.setState({ password: text })} />
                                     </Item>
                                 </View>
                                 <View>
                                     <Item >
-                                        <Input placeholder="Nomer Telephone" keyboardType={'numeric'} />
+                                        <Input placeholder="Nomer Telephone" keyboardType={'numeric'} onChangeText={(text) => this.setState({ no_telephone: text })} />
                                     </Item>
                                 </View>
                                 <View style={{ justifyContent: 'center', alignItems: 'center', top: 10, flexDirection: 'row' }}>
@@ -105,10 +148,16 @@ class BuatAkunScreen extends Component {
                                             placeholderStyle={{ color: "#bfc6ea" }}
                                             placeholderIconColor="#007aff"
                                             style={{ width: undefined }}
-                                            selectedValue={this.state.selected}
-                                            onValueChange={this.onValueChange.bind(this)}
+                                            selectedValue={(this.state && this.state.id_province)}
+                                            onValueChange={(value) => {
+                                                this.setState({ id_province: value });
+                                            }}
                                         >
-                                            <Picker.Item label="DKI Jakarta" value="key0" />
+                                            {province.map((item, index) => {
+                                                return (
+                                                    <Picker.Item key={index} value={item.id} label={item.name_province} />
+                                                )
+                                            })}
                                         </Picker>
                                     </View>
                                     <View style={{ flex: 1 }}>
@@ -119,11 +168,16 @@ class BuatAkunScreen extends Component {
                                             placeholderStyle={{ color: "#bfc6ea" }}
                                             placeholderIconColor="#007aff"
                                             style={{ width: undefined }}
-                                            selectedValue={this.state.selected}
-                                            onValueChange={this.onValueChange.bind(this)}
+                                            selectedValue={(this.state && this.state.id_city)}
+                                            onValueChange={(value) => {
+                                                this.setState({ id_city: value });
+                                            }}
                                         >
-                                            <Picker.Item label="Jakarta Pusat" value="key0" />
-                                            <Picker.Item label="Jakarta Barat" value="key1" />
+                                            {city.map((item, index) => {
+                                                return (
+                                                    <Picker.Item key={index} value={item.id} label={item.name_city} />
+                                                )
+                                            })}
                                         </Picker>
                                     </View>
                                     <View style={{ flex: 1 }}>
@@ -134,16 +188,22 @@ class BuatAkunScreen extends Component {
                                             placeholderStyle={{ color: "#bfc6ea" }}
                                             placeholderIconColor="#007aff"
                                             style={{ width: undefined }}
-                                            selectedValue={this.state.selected}
-                                            onValueChange={this.onValueChange.bind(this)}
+                                            selectedValue={(this.state && this.state.id_sub_city)}
+                                            onValueChange={(value) => {
+                                                this.setState({ id_sub_city: value });
+                                            }}
                                         >
-                                            <Picker.Item label="Cingkareng" value="key0" />
+                                            {subcity.map((item, index) => {
+                                                return (
+                                                    <Picker.Item key={index} value={item.id} label={item.name_sub_city} />
+                                                )
+                                            })}
                                         </Picker>
                                     </View>
                                 </View>
                                 <View>
                                     <Item >
-                                        <Input placeholder="Alamat Lengkap" />
+                                        <Input placeholder="Alamat Lengkap" onChangeText={(text) => this.setState({ address: text })} />
                                     </Item>
                                 </View>
                                 <View>
@@ -157,9 +217,9 @@ class BuatAkunScreen extends Component {
                                     </View>
                                     <View style={{ flex: 2, flexDirection: 'column' }}>
                                         {/* <Text>hello</Text> */}
-                                        {photo && (
+                                        {image && (
                                             <Image
-                                                source={{ uri: photo.uri }}
+                                                source={{ uri: image.uri }}
                                                 style={{ width: 100, height: 100 }}
                                             />
                                         )}
@@ -173,7 +233,7 @@ class BuatAkunScreen extends Component {
                                         </Button>
                                     </View>
                                     <View style={{ flex: 1, justifyContent: "center", alignItems: 'center' }}>
-                                        <Button style={{ width: 100, justifyContent: "center", alignItems: 'center', backgroundColor: '#35B829' }} onPress={() => this.props.navigation.navigate('Login')}>
+                                        <Button style={{ width: 100, justifyContent: "center", alignItems: 'center', backgroundColor: '#35B829' }} onPress={this.onSubmit}>
                                             <Text style={{ color: 'white' }}>Save</Text>
                                         </Button>
                                     </View>
@@ -187,4 +247,12 @@ class BuatAkunScreen extends Component {
     }
 }
 
-export default BuatAkunScreen
+const mapStateToProps = (state) => {
+    return {
+        province: state.regions.province,
+        city: state.regions.city,
+        subcity: state.regions.subcity
+    }
+}
+
+export default connect(mapStateToProps)(BuatAkunScreen);

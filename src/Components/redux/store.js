@@ -1,19 +1,36 @@
+import AsyncStorage from '@react-native-community/async-storage';
 import { createStore, applyMiddleware, compose } from 'redux';
-import logger from 'redux-logger';
+import { createLogger } from 'redux-logger';
 import promiseMiddleware from 'redux-promise-middleware';
-import { composeWithDevTools } from 'redux-devtools-extension';
-
+import { persistStore, persistReducer } from 'redux-persist';
+// import storage from "redux-persist/es/storage";
 
 import reducers from './reducers';
 
+const logger = createLogger({});
+
+const persisConfig = {
+    key: 'auth',
+    storage: AsyncStorage,
+    whitelist: ['auth']
+};
+
+const pReducer = persistReducer(persisConfig, reducers);
+
 const store = createStore(
-    reducers,
-    composeWithDevTools(
+    pReducer,
+    compose(
         applyMiddleware(
             logger,
             promiseMiddleware
-        )
+        ),
+        // window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
     )
-);
+)
 
-export default store;
+let persistor = persistStore(store);
+
+export {
+    store,
+    persistor
+}; 

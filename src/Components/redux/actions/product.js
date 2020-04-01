@@ -6,7 +6,7 @@ export const createProduct = (data) => {
         type: 'CREATE_PRODUCT',
         payload: axios({
             method: "POST",
-            url: `http://192.168.1.3:4111/product`,
+            url: `http://20.20.20.155:4111/product`,
             data: data
         })
     }
@@ -17,7 +17,7 @@ export const readProduct = () => {
         type: 'READ_PRODUCT',
         payload: axios({
             method: "GET",
-            url: `http://192.168.1.3:4111/product`
+            url: `http://20.20.20.155:4111/product`
         })
     }
 }
@@ -27,7 +27,7 @@ export const readProductImport = () => {
         type: 'READ_PRODUCT_IMPORT',
         payload: axios({
             method: "GET",
-            url: `http://192.168.1.3:4111/product/?group=1`
+            url: `http://20.20.20.155:4111/product/?group=1`
         })
     }
 }
@@ -37,7 +37,7 @@ export const readProductLocal = () => {
         type: 'READ_PRODUCT_LOCAL',
         payload: axios({
             method: "GET",
-            url: `http://192.168.1.3:4111/product/?group=2`
+            url: `http://20.20.20.155:4111/product/?group=2`
         })
     }
 }
@@ -47,7 +47,7 @@ export const updateProduct = (productId, data) => {
         type: 'UPDATE_PRODUCT',
         payload: axios({
             method: "PATCH",
-            url: `http://192.168.1.3:4111/product/${productId}`,
+            url: `http://20.20.20.155:4111/product/${productId}`,
             data: data
         })
     }
@@ -58,7 +58,7 @@ export const deleteProduct = (productId) => {
         type: 'DELETE_PRODUCT',
         payload: axios({
             method: "DELETE",
-            url: `http://192.168.1.3:4111/product/${productId}`
+            url: `http://20.20.20.155:4111/product/${productId}`
         })
     }
 }
@@ -68,7 +68,7 @@ export const detailProduct = (productId) => {
         type: 'DETAIL_PRODUCT',
         payload: axios({
             method: "GET",
-            url: `http://192.168.1.3:4111/product/${productId}`
+            url: `http://20.20.20.155:4111/product/${productId}`
         })
     }
 }
@@ -78,7 +78,7 @@ export const filterProduct = (group, category, product) => {
         type: 'FILTER_PRODUCT',
         payload: axios({
             method: "GET",
-            url: `http://192.168.1.3:4111/product/?group=${group}&category=${category}&product=${product}`
+            url: `http://20.20.20.155:4111/product/?group=${group}&category=${category}&product=${product}`
         })
     }
 }
