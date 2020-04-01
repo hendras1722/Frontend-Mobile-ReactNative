@@ -14,14 +14,14 @@ export const deleteCart = (data) => {
 
 export const addQty = (id) => {
     return {
-        type: 'ADD_QTY',
+        type: 'ADD_QUANTITY',
         payload: id
     }
 }
 
 export const reduceQty = (id) => {
     return {
-        type: 'REDUCE_QTY',
+        type: 'REDUCE_QUANTITY',
         payload: id
     }
 }
