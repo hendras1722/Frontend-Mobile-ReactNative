@@ -75,9 +75,9 @@ class LoginScreen extends Component {
                                 </View>
                                 <View style={{ top: 30, marginHorizontal: 10, height: 100 }}>
                                     <View style={{ flex: 1, justifyContent: "center", alignItems: 'center', top: 10 }}>
-                                        <Button style={{ width: 320, justifyContent: "center", alignItems: 'center', backgroundColor: '#35B829', borderRadius: 5 }} onPress={this.onSubmit}>
+                                        <TouchableOpacity style={{ width: 320, height: 50, justifyContent: "center", alignItems: 'center', backgroundColor: '#35B829', borderRadius: 5 }} onPress={this.onSubmit}>
                                             <Text style={{ color: 'white' }}>Masuk</Text>
-                                        </Button>
+                                        </TouchableOpacity>
                                         <Text onPress={() => this.props.navigation.navigate('UbahPassword1')} style={{ top: 20, fontSize: 18, color: '#35B829' }}>Lupa Kata Sandi?</Text>
                                     </View>
                                     <View style={{ flex: 1, justifyContent: "center", alignItems: 'center', top: 40 }}>

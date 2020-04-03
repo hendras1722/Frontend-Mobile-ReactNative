@@ -5,7 +5,6 @@ import { TextInput } from 'react-native-gesture-handler';
 // import App from './src/Components/screen/Home/backgou';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import ImagePicker from 'react-native-image-picker';
-import { connect } from 'react-redux';
 
 import { readProvince, readCity, readSubCity } from '../../redux/actions/region'
 import { createAccount } from '../../redux/actions/auth'
@@ -118,53 +117,6 @@ class BuatAkunScreen extends Component {
             console.log('tanpa photo')
             await this.props.dispatch(updateAccount(this.state.id, data));
             await this.props.navigation.navigate('Account')
-        }
-    }
-
-
-    async get() {
-        try {
-            let getId = await AsyncStorage.getItem("id")
-            let getEmail = await AsyncStorage.getItem("email")
-            let getFirst_name = await AsyncStorage.getItem("first_name")
-            let getLast_name = await AsyncStorage.getItem("last_name")
-            let getId_province = await AsyncStorage.getItem("id_province")
-            let getId_city = await AsyncStorage.getItem("id_city")
-            let getId_sub_city = await AsyncStorage.getItem("id_sub_city")
-            let getAddress = await AsyncStorage.getItem("address")
-            let getNo_telephone = await AsyncStorage.getItem("no_telephone")
-            let getImage = await AsyncStorage.getItem("image")
-            let getRole = await AsyncStorage.getItem("role")
-            let getToken = await AsyncStorage.getItem("token")
-
-            let dataId = JSON.parse(getId)
-            let dataEmail = JSON.parse(getEmail)
-            let dataFirst_name = JSON.parse(getFirst_name)
-            let dataLast_name = JSON.parse(getLast_name)
-            let dataId_province = JSON.parse(getId_province)
-            let dataId_city = JSON.parse(getId_city)
-            let dataId_sub_city = JSON.parse(getId_sub_city)
-            let dataAddress = JSON.parse(getAddress)
-            let dataNo_telephone = JSON.parse(getNo_telephone)
-            let dataImage = JSON.parse(getImage)
-            let dataRole = JSON.parse(getRole)
-            let dataToken = JSON.parse(getToken)
-            this.setState({
-                id: dataId,
-                email: dataEmail,
-                first_name: dataFirst_name,
-                last_name: dataLast_name,
-                id_province: dataId_province,
-                id_city: dataId_city,
-                id_sub_city: dataId_sub_city,
-                address: dataAddress,
-                no_telephone: dataNo_telephone,
-                // image: dataImage,
-                role: dataRole,
-                token: dataToken
-            })
-        } catch (error) {
-            console.log(error)
         }
     }
 

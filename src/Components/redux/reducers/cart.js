@@ -8,7 +8,7 @@ const cart = (state = initialState, action) => {
         case 'ADD_CART_DATA':
             let filterCartId = state.carts.map(product => {
                 if (product.id === action.payload.id) {
-                    product.quantity += 1
+                    product.qty += 1
 
                     return action.payload
                 }
@@ -27,7 +27,7 @@ const cart = (state = initialState, action) => {
             }
             else { // kalo gaada
                 let newTotal = state.total + action.payload.price
-                action.payload.quantity = 1;
+                action.payload.qty = 1;
                 return {
                     ...state,
                     carts: [...state.carts, action.payload],
@@ -49,13 +49,13 @@ const cart = (state = initialState, action) => {
         case 'ADD_QUANTITY':
             const addQty = state.carts.map(product => {
                 if (product.id === action.payload) {
-                    product.quantity += 1
+                    product.qty += 1
                 }
                 return product
             })
             let existedCartAdd = state.carts.find(product => product.id === action.payload)
-            if (existedCartAdd.quantity > existedCartAdd.quantity) { // kalo ada
-                existedCartAdd.quantity = existedCartAdd.quantity;
+            if (existedCartAdd.qty > existedCartAdd.quantity) { // kalo ada
+                existedCartAdd.qty = existedCartAdd.quantity;
                 return {
                     ...state,
                 }
@@ -70,14 +70,14 @@ const cart = (state = initialState, action) => {
         case 'REDUCE_QUANTITY':
             const reduceQty = state.carts.map(product => {
                 if (product.id === action.payload) {
-                    product.quantity = product.quantity - 1
+                    product.qty = product.qty - 1
                 }
                 return product
             })
             let existedCartReduce = state.carts.find(product => product.id === action.payload)
-            if (existedCartReduce.quantity <= 0) { // kalo ada
+            if (existedCartReduce.qty <= 0) { // kalo ada
                 // alert("Cannot Reduce Below 0! ext (-1 -2 -3)")
-                existedCartReduce.quantity = 1;
+                existedCartReduce.qty = 1;
                 return {
                     ...state,
                 }
@@ -90,6 +90,13 @@ const cart = (state = initialState, action) => {
             }
 
         case 'CANCEL_CART_DATA':
+            return {
+                ...state,
+                carts: [],
+                total: 0
+            }
+
+        case 'CLEAR_CART_DATA':
             return {
                 ...state,
                 carts: [],

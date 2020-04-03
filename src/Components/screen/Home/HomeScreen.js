@@ -18,7 +18,7 @@ class HomeScreen extends Component {
     };
 
     state = {
-        count: null
+        count: 0
     }
 
     componentDidMount() {
@@ -62,7 +62,7 @@ class HomeScreen extends Component {
                                     >
                                         <Icon name="cart" onPress={() => this.props.navigation.navigate('Order')} style={{ fontSize: 30, left: 16, color: 'white', position: 'absolute', top: -8 }}></Icon>
                                         {/* <Badge style={{ padding: 5, position: 'absolute', left: 30, justifyContent: 'center', alignItems: 'center', borderRadius: 50 }}> */}
-                                        <Icon name="alert-octagram" style={{ fontSize: 18, left: 30, color: 'red', position: 'absolute', top: -10 }}></Icon>
+                                        <Icon name="alert-octagram" style={{ fontSize: 18, left: 30, color: this.state.count === this.props.carts.length ? "black" : "red", position: 'absolute', top: -10 }} value={this.state.count}></Icon>
                                         {/* </Badge> */}
                                     </TouchableOpacity>
                                 </View>
@@ -188,7 +188,12 @@ class HomeScreen extends Component {
 
                 </View>
             </Fragment>
-        )  
+        )
+    }
+    getBadgeClasses() {
+        let classes = `color:`;
+        classes += this.state.count === this.props.carts.length ? "#4f3961" : "#00000";
+        return classes;
     }
 }
 
