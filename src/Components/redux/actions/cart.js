@@ -33,3 +33,11 @@ export const cancleCart = (data) => {
         payload: data
     }
 }
+
+export const clearCart = (data) => {
+    return {
+        type: 'CLEAR_CART_DATA',
+        method: "DELETE",
+        payload: data
+    }
+}

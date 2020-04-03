@@ -6,7 +6,7 @@ export const purchaseCheckout = (data) => {
         type: "CHECKOUT_PURCHASE",
         payload: axios({
             method: "POST",
-            url: `http://192.168.43.152:4111/purchase`,
+            url: `http://20.20.20.155:4111/purchase`,
             data: data
         })
     }
@@ -17,7 +17,7 @@ export const readPurchase = () => {
         type: "READ_PURCHASE",
         payload: axios({
             method: "GET",
-            url: `http://192.168.43.152:4111/purchase`,
+            url: `http://20.20.20.155:4111/purchase`,
         })
     }
 }

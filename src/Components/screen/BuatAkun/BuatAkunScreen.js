@@ -5,6 +5,9 @@ import { TextInput } from 'react-native-gesture-handler';
 // import App from './src/Components/screen/Home/backgou';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import ImagePicker from 'react-native-image-picker';
+
+import { readProvince, readCity, readSubCity } from '../../redux/actions/region'
+import { createAccount } from '../../redux/actions/auth'
 import { connect } from 'react-redux';
 
 class BuatAkunScreen extends Component {
@@ -16,21 +19,26 @@ class BuatAkunScreen extends Component {
             backgroundColor: 'red'
         }
     };
+
     state = {
         selected: undefined,
-        nameImage: '',
-        id: null,
-        email: null,
-        first_name: null,
-        last_name: null,
-        id_province: null,
-        id_city: null,
-        id_sub_city: null,
-        address: null,
-        no_telephone: null,
-        image: null,
-        role: null,
-        token: null
+        namePhoto: '',
+        email: '',
+        first_name: '',
+        last_name: '',
+        password: '',
+        id_province: '' || 1,
+        id_city: '' || 1,
+        id_sub_city: '' || 1,
+        address: '',
+        no_telephone: '',
+        image: null
+    }
+
+    componentDidMount() {
+        this.props.dispatch(readProvince())
+        this.props.dispatch(readCity())
+        this.props.dispatch(readSubCity())
     }
 
     handleChoosePhoto = () => {
@@ -39,7 +47,7 @@ class BuatAkunScreen extends Component {
         };
         ImagePicker.launchCamera(options, response => {
             if (response.uri) {
-                this.setState({ photo: response, namePhoto: response.fileName });
+                this.setState({ image: response, namePhoto: response.fileName });
             }
         });
     };
@@ -50,16 +58,38 @@ class BuatAkunScreen extends Component {
         };
         ImagePicker.launchImageLibrary(options, response => {
             if (response.uri) {
-                this.setState({ photo: response, namePhoto: response.fileName });
+                this.setState({ image: response, namePhoto: response.fileName });
             }
         });
     };
 
-
-    onValueChange(event) {
-        this.setState({
-            selected: event
-        });
+    onSubmit = async (event) => {
+        event.preventDefault()
+        const data = new FormData()
+        data.append('email', this.state.email)
+        data.append('first_name', this.state.first_name)
+        data.append('last_name', this.state.last_name)
+        data.append('password', this.state.password)
+        data.append('id_province', this.state.id_province)
+        data.append('id_city', this.state.id_city)
+        data.append('id_sub_city', this.state.id_sub_city)
+        data.append('address', this.state.address)
+        data.append('no_telephone', this.state.no_telephone)
+        if ((this.state.image === null) === true) {
+            alert('Silahkan Login!')
+            await this.props.dispatch(createAccount(data));
+            await this.props.navigation.navigate('Login');
+        } else if ((this.state.image === null) === false) {
+            let File = {
+                name: this.state.image.fileName,
+                type: this.state.image.type,
+                uri: this.state.image.uri
+            }
+            data.append('image', File)
+            alert('Silahkan Login!')
+            await this.props.dispatch(createAccount(data));
+            await this.props.navigation.navigate('Login');
+        }
     }
 
     onSubmit = async (event) => {
@@ -90,56 +120,9 @@ class BuatAkunScreen extends Component {
         }
     }
 
-
-    async get() {
-        try {
-            let getId = await AsyncStorage.getItem("id")
-            let getEmail = await AsyncStorage.getItem("email")
-            let getFirst_name = await AsyncStorage.getItem("first_name")
-            let getLast_name = await AsyncStorage.getItem("last_name")
-            let getId_province = await AsyncStorage.getItem("id_province")
-            let getId_city = await AsyncStorage.getItem("id_city")
-            let getId_sub_city = await AsyncStorage.getItem("id_sub_city")
-            let getAddress = await AsyncStorage.getItem("address")
-            let getNo_telephone = await AsyncStorage.getItem("no_telephone")
-            let getImage = await AsyncStorage.getItem("image")
-            let getRole = await AsyncStorage.getItem("role")
-            let getToken = await AsyncStorage.getItem("token")
-
-            let dataId = JSON.parse(getId)
-            let dataEmail = JSON.parse(getEmail)
-            let dataFirst_name = JSON.parse(getFirst_name)
-            let dataLast_name = JSON.parse(getLast_name)
-            let dataId_province = JSON.parse(getId_province)
-            let dataId_city = JSON.parse(getId_city)
-            let dataId_sub_city = JSON.parse(getId_sub_city)
-            let dataAddress = JSON.parse(getAddress)
-            let dataNo_telephone = JSON.parse(getNo_telephone)
-            let dataImage = JSON.parse(getImage)
-            let dataRole = JSON.parse(getRole)
-            let dataToken = JSON.parse(getToken)
-            this.setState({
-                id: dataId,
-                email: dataEmail,
-                first_name: dataFirst_name,
-                last_name: dataLast_name,
-                id_province: dataId_province,
-                id_city: dataId_city,
-                id_sub_city: dataId_sub_city,
-                address: dataAddress,
-                no_telephone: dataNo_telephone,
-                // image: dataImage,
-                role: dataRole,
-                token: dataToken
-            })
-        } catch (error) {
-            console.log(error)
-        }
-    }
-
     render() {
         console.disableYellowBox = true
-        const { photo } = this.state;
+        const { image } = this.state;
         const { province, city, subcity } = this.props
         return (
             // <Text>hello</Text>
@@ -156,25 +139,32 @@ class BuatAkunScreen extends Component {
 
                         {/* mPping disini */}
                         <ScrollView >
-                            <View style={{ padding: 20, maxHeight: 800, height: 630 }}>
+                            <View style={{ padding: 20, maxHeight: 800, height: 650 }}>
+                                <View style={{ flexDirection: 'row' }}>
+                                    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                                        <Item style={{ width: 100 }}>
+                                            <Input placeholder="Nama Depan" onChangeText={(text) => this.setState({ first_name: text })} />
+                                        </Item>
+                                    </View>
+                                    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+                                        <Item style={{ width: 100 }}>
+                                            <Input placeholder="Nama Belakang" onChangeText={(text) => this.setState({ last_name: text })} />
+                                        </Item>
+                                    </View>
+                                </View>
                                 <View>
                                     <Item >
-                                        <TextInput placeholder="Nama Depan" onChangeText={(text) => this.setState({ email: text })}>{this.state.email}</TextInput>
+                                        <Input placeholder="Email" onChangeText={(text) => this.setState({ email: text })} />
+                                    </Item>
+                                </View>
+                                <View>
+                                    <Item>
+                                        <Input placeholder="Password" secureTextEntry onChangeText={(text) => this.setState({ password: text })} />
                                     </Item>
                                 </View>
                                 <View>
                                     <Item >
-                                        <TextInput placeholder="Nama Belakang" onChangeText={(text) => this.setState({ email: text })}>{this.state.email}</TextInput>
-                                    </Item>
-                                </View>
-                                <View>
-                                    <Item >
-                                        <TextInput placeholder="Email" onChangeText={(text) => this.setState({ email: text })}>{this.state.email}</TextInput>
-                                    </Item>
-                                </View>
-                                <View>
-                                    <Item >
-                                        <TextInput placeholder="Nomer Telephone" keyboardType={'numeric'} onChangeText={(text) => this.setState({ no_telephone: text })}>{this.state.no_telephone}</TextInput>
+                                        <Input placeholder="Nomer Telephone" keyboardType={'numeric'} onChangeText={(text) => this.setState({ no_telephone: text })} />
                                     </Item>
                                 </View>
                                 <View style={{ justifyContent: 'center', alignItems: 'center', top: 10, flexDirection: 'row' }}>
@@ -241,7 +231,7 @@ class BuatAkunScreen extends Component {
                                 </View>
                                 <View>
                                     <Item >
-                                        <TextInput placeholder="Alamat Lengkap" onChangeText={(text) => this.setState({ address: text })}>{this.state.address}</TextInput>
+                                        <Input placeholder="Alamat Lengkap" onChangeText={(text) => this.setState({ address: text })} />
                                     </Item>
                                 </View>
                                 <View>
@@ -286,9 +276,7 @@ class BuatAkunScreen extends Component {
     }
 }
 
-
 const mapStateToProps = (state) => {
-    console.log(state)
     return {
         province: state.regions.province,
         city: state.regions.city,
@@ -296,4 +284,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps)(BuatAkunScreen)
+export default connect(mapStateToProps)(BuatAkunScreen);
