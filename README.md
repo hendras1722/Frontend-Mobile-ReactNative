@@ -30,5 +30,9 @@ Android_home
 <img width="250" src="https://avatars1.githubusercontent.com/u/57746184?s=460&u=bfc9704fd2e0f0bdcc060e68bab55191658613c3&v=4"> 
 Muhammad Syahendra Anindyantoro
 
+<img width="250" src="https://avatars2.githubusercontent.com/u/42530153?s=460&u=c19e6356f39781ef5880eb77370e947fd6a6edb7&v=4"> 
+Akhmad Salman Yassar
+
+
 ## License
-MSA Offical
+Makyur Official
